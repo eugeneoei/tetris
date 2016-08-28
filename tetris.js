@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   };
 
-  window.addEventListener("keydown", move, false);
+  window.addEventListener("keydown", move);
 
   function move(event) {
     // right arrow
@@ -90,13 +90,32 @@ document.addEventListener("DOMContentLoaded", function() {
     oTwo.y += 10;
     oThree.y += 10;
     oDraw();
+    stop();
     console.log("block drop");
+    console.log(oTwo);
   }
 
-  // setInterval(drop, 1000);
+  function stop() {
+    if (oTwo.y === 390) {
+      clearInterval(countDown);
+      console.log("block stopped")
+      draw.clearRect(0, 0, width, height);
+      oZero.y = 380;
+      oOne.y = 380;
+      oTwo.y = 390;
+      oThree.y = 390;
+      oDraw();
+      window.removeEventListener("keydown", move);
+      // block stops at bottom but when moving fast, it still goes down why?
+    }
+    // oDraw();
+  };
+
+  var countDown = setInterval(drop, 1000);
 
   // simulate first shape
   // on start, to call oDraw function
+  // countDown;
   oDraw();
 
 
