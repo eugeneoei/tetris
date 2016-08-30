@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
   console.log("DOM loaded");
 
-  //<canvas id="canvas" width="100" height="200">
+  //<canvas id="canvas" width="1000" height="200">
   // o = square block
   // i = stick block
   // j = j block
@@ -12,12 +12,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
-  var width = 100;
+  var width = 1000;
   var height = 200;
-  var col = 40; // x-axis
+  var col = 4; // x-axis
   var row = 0; // y-axis
-  var dCol = 10; // for col
-  var dRow = 10; // for row
+  var dCol = 1; // for col
+  var dRow = 1; // for row
 
 
   var gameGrid =[[0,0,0,0,0,0,0,0,0,0],
@@ -71,31 +71,24 @@ document.addEventListener("DOMContentLoaded", function() {
   //   gameGrid.push(temp);
   // }
 
-  var interval = setInterval(move, 500);
+  var interval = setInterval(gameStart, 1000);
 
   // game loop
-  function move() {
+  function gameStart() {
     checkPosition();
     clearCanvas();
     //draw();
+
     colorCanvas();
     // newBlock();
+
+
   }
 
-  // function newBlock() {
-  //   ctx.fillStyle = "red";
-  //   ctx.fillRect(10,10,10,10);
-  //   console.log("new block drawn");
-  // }
-
-  function updateGrid() {
-    // setting next grid to equal 1
-    gameGrid[row/10][col/10] = 0;
-    gameGrid[row/10 + 1][col/10] = 1;
-
-
+  function newBlock() {
+    gameGrid[row][col] = 1;
+    console.log("new block drawn");
     console.log(gameGrid);
-    console.log("grid updated");
   }
 
   function clearCanvas() {
@@ -104,33 +97,33 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function checkPosition() {
-    if (checkBorder()) {
+    if (gameStatus()) {
+      clearInterval(interval);
+      console.log("game over");
+    }
+    else if (checkBorder()) {
       clearInterval(interval);
       console.log("time stop");
-      // newBlock();
+      row = 0;
+      newBlock();
+      interval = setInterval(gameStart, 1000);
     }
     else if (checkCollision()) {
       clearInterval(interval);
       console.log("time stop");
-      // newBlock();
-    } else {
+      row = 0;
+      newBlock();
+      interval = setInterval(gameStart, 1000);
+    }
+    else {
       updateGrid();
       row += dRow;
       console.log("position update: " + row);
     }
   }
 
-  function checkCollision() {
-    if (gameGrid[(row/10)+1][col/10] === 1) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
-
   function checkBorder() {
-    if (row > 180) {
+    if (row > 18) {
       console.log('checkBorder returning true');
       return true;
     }
@@ -139,6 +132,67 @@ document.addEventListener("DOMContentLoaded", function() {
       return false;
     }
   }
+
+  function checkCollision() {
+    if (gameGrid[row+1][col] === 1) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  function gameStatus() {
+    // check for game over. if grid below spawn point is occupied
+    // then game is over
+    if ((gameGrid[0][col] === 1) && (gameGrid[1][col] === 1)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  function updateGrid() {
+    // setting next grid to equal 1
+    gameGrid[row][col] = 0;
+    gameGrid[row + 1][col] = 1;
+    // console.log(gameGrid);
+    console.log("grid updated");
+  }
+
+
+  document.addEventListener("keydown", direction);
+
+  function direction(event) {
+    // right arrow
+    // function recognise key code
+    if (event.keyCode === 39) {
+      // clears canvas then redraw new image
+      col += dCol;
+      gameGrid[row][col -1] = 0;
+      gameGrid[row][col] = 1;
+      clearCanvas();
+      console.log("right arrow pressed");
+    }
+    // left arrow
+    else if (event.keyCode === 37) {
+      col -= dCol;
+      gameGrid[row][col + 1] = 0;
+      gameGrid[row][col] = 1;
+      clearCanvas();
+      console.log("left arrow pressed");
+    }
+    // down arrow
+    else if (event.keyCode === 40) {
+      row += dRow;
+      gameGrid[row - 1][col] = 0;
+      gameGrid[row][col] = 1;
+      clearCanvas();
+      console.log("down arrow pressed");
+    }
+  }
+
 
 
   // colorCanvas();
