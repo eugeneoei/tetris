@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
   var ctx = canvas.getContext("2d");
   var width = 100;
   var height = 200;
-  var col = 10; // x-axis
+  var col = 40; // x-axis
   var row = 0; // y-axis
   var dCol = 10; // for col
   var dRow = 10; // for row
@@ -41,6 +41,27 @@ document.addEventListener("DOMContentLoaded", function() {
                  [0,0,0,0,0,0,0,0,0,0],
                  [0,0,0,0,0,0,0,0,0,0]]
 
+
+  // gameGrid[row/10][col/10] = 1;
+
+  function colorCanvas() {
+    for (var i = 0; i < gameGrid.length; i++) {
+      for (var j = 0; j < gameGrid[i].length; j++) {
+        if (gameGrid[i][j] === 1) {
+          ctx.fillStyle = "red";
+          ctx.fillRect(j*10,i*10,10,10);
+          console.log("grid colored");
+        }
+        else if (gameGrid[i][j] === 2) {
+          ctx.fillStyle = "blue";
+          ctx.fillRect(j*10,i*10,10,10);
+          console.log("grid colored");
+        }
+      }
+    }
+  }
+
+
   // var gameGrid = []
   // for (var i = 0; i < 20; i++) {
   //   var temp = [];
@@ -50,26 +71,30 @@ document.addEventListener("DOMContentLoaded", function() {
   //   gameGrid.push(temp);
   // }
 
-  var interval = setInterval(gameStart, 500);
+  var interval = setInterval(move, 500);
 
   // game loop
-  function gameStart() {
-    draw();
-    updateGrid();
+  function move() {
+    checkPosition();
     clearCanvas();
-    updatePosition();
-    draw();
+    //draw();
+    colorCanvas();
+    // newBlock();
   }
 
-  // use for loop to draw shapes later
-  function draw() {
-    ctx.fillStyle = "red";
-    ctx.fillRect(col,row,10,10);
-    console.log("square drawn");
-  }
+  // function newBlock() {
+  //   ctx.fillStyle = "red";
+  //   ctx.fillRect(10,10,10,10);
+  //   console.log("new block drawn");
+  // }
 
   function updateGrid() {
-    gameGrid[row/10][col/10] = 1;
+    // setting next grid to equal 1
+    gameGrid[row/10][col/10] = 0;
+    gameGrid[row/10 + 1][col/10] = 1;
+
+
+    console.log(gameGrid);
     console.log("grid updated");
   }
 
@@ -78,18 +103,20 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("canvas cleared");
   }
 
-  function updatePosition() {
+  function checkPosition() {
     if (checkBorder()) {
       clearInterval(interval);
       console.log("time stop");
+      // newBlock();
     }
     else if (checkCollision()) {
       clearInterval(interval);
       console.log("time stop");
-    }
-    else {
-    row += dRow;
-    console.log("position update: " + row);
+      // newBlock();
+    } else {
+      updateGrid();
+      row += dRow;
+      console.log("position update: " + row);
     }
   }
 
@@ -103,7 +130,6 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function checkBorder() {
-    // gameGrid[19][1] starts at (10,180)
     if (row > 180) {
       console.log('checkBorder returning true');
       return true;
@@ -114,6 +140,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
+
+  // colorCanvas();
   // draw();
   // console.log(gameGrid);
 }); // bracket for dom content loaded
