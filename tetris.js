@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
   console.log("DOM loaded");
 
-  //<canvas id="canvas" width="1000" height="200">
+  //<canvas id="canvas" width="800" height="200">
   // o = square block
   // i = stick block
   // j = j block
@@ -12,12 +12,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
-  var width = 1000;
-  var height = 200;
+  var width = 10;
+  var height = 20;
   var col = 4; // x-axis
   var row = 0; // y-axis
-  var dCol = 1; // for col
-  var dRow = 1; // for row
+  // var dCol = 1;
+  // var dRow = 1;
 
 
   var gameGrid =[[0,0,0,0,0,0,0,0,0,0],
@@ -71,18 +71,13 @@ document.addEventListener("DOMContentLoaded", function() {
   //   gameGrid.push(temp);
   // }
 
-  var interval = setInterval(gameStart, 1000);
+  var interval = setInterval(gameStart, 800);
 
   // game loop
   function gameStart() {
     checkPosition();
     clearCanvas();
-    //draw();
-
     colorCanvas();
-    // newBlock();
-
-
   }
 
   function newBlock() {
@@ -92,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function clearCanvas() {
-    ctx.clearRect(0,0,width,height);
+    ctx.clearRect(0,0,width*10,height*10);
     console.log("canvas cleared");
   }
 
@@ -106,25 +101,28 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log("time stop");
       row = 0;
       newBlock();
-      interval = setInterval(gameStart, 1000);
+      interval = setInterval(gameStart, 800);
     }
     else if (checkCollision()) {
       clearInterval(interval);
       console.log("time stop");
       row = 0;
       newBlock();
-      interval = setInterval(gameStart, 1000);
+      interval = setInterval(gameStart, 800);
+      // resetMove();
     }
     else {
       updateGrid();
-      row += dRow;
+      row++;
       console.log("position update: " + row);
     }
   }
 
   function checkBorder() {
-    if (row > 18) {
+    if (row === 19) {
+      console.log(row);
       console.log('checkBorder returning true');
+      row = row;
       return true;
     }
     else {
@@ -134,11 +132,31 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function checkCollision() {
+    console.log("-------------");
+    console.log(gameGrid[row]);
+    console.log("Row: ",row, "Col: ", col);
+    console.log("-------------");
     if (gameGrid[row+1][col] === 1) {
       return true;
     }
     else {
       return false;
+    }
+  }
+
+  function checkLeftBorder() {
+    for (var i = 0; i < gameGrid.length; i++) {
+      if (gameGrid[i][0] === 1) {
+        return true;
+      }
+    }
+  }
+
+  function checkRightBorder() {
+    for (var i = 0; i < gameGrid.length; i++) {
+      if (gameGrid[i][9] === 1) {
+        return true;
+      }
     }
   }
 
@@ -164,32 +182,62 @@ document.addEventListener("DOMContentLoaded", function() {
 
   document.addEventListener("keydown", direction);
 
+  // keypad arrows
   function direction(event) {
     // right arrow
     // function recognise key code
+
     if (event.keyCode === 39) {
-      // clears canvas then redraw new image
-      col += dCol;
-      gameGrid[row][col -1] = 0;
-      gameGrid[row][col] = 1;
-      clearCanvas();
-      console.log("right arrow pressed");
+      if (col === 9) {
+        console.log(col);
+        col = col;
+      }
+      else if (gameGrid[row][col+1]!=0) {
+        checkCollision();
+      }
+      else {
+        col++;
+        gameGrid[row][col -1] = 0;
+        gameGrid[row][col] = 1;
+        clearCanvas();
+        console.log("right arrow pressed");
+        // resetMove();
+      }
     }
+
     // left arrow
     else if (event.keyCode === 37) {
-      col -= dCol;
-      gameGrid[row][col + 1] = 0;
-      gameGrid[row][col] = 1;
-      clearCanvas();
-      console.log("left arrow pressed");
+      if (col === 0) {
+        col = col;
+      }
+      else if (gameGrid[row][col-1]!=0) {
+        checkCollision();
+      }
+      else {
+        col--;
+        gameGrid[row][col + 1] = 0;
+        gameGrid[row][col] = 1;
+        clearCanvas();
+        console.log("left arrow pressed");
+      // resetMove();
+      }
     }
+
     // down arrow
     else if (event.keyCode === 40) {
-      row += dRow;
-      gameGrid[row - 1][col] = 0;
-      gameGrid[row][col] = 1;
-      clearCanvas();
-      console.log("down arrow pressed");
+      if (row === 19) {
+        row = row;
+      }
+      else if (gameGrid[row+1][col]!=0){
+        checkCollision();
+      }
+      else {
+        row++;
+        gameGrid[row - 1][col] = 0;
+        gameGrid[row][col] = 1;
+        clearCanvas();
+        console.log("down arrow pressed");
+      }
     }
   }
 
