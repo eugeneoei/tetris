@@ -99,6 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
     else if (checkBorder()) {
       clearInterval(interval);
       console.log("time stop");
+      linesToClear();
       row = 0;
       newBlock();
       interval = setInterval(gameStart, 800);
@@ -106,10 +107,10 @@ document.addEventListener("DOMContentLoaded", function() {
     else if (checkCollision()) {
       clearInterval(interval);
       console.log("time stop");
+      linesToClear();
       row = 0;
       newBlock();
       interval = setInterval(gameStart, 800);
-      // resetMove();
     }
     else {
       updateGrid();
@@ -144,22 +145,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-  function checkLeftBorder() {
-    for (var i = 0; i < gameGrid.length; i++) {
-      if (gameGrid[i][0] === 1) {
-        return true;
-      }
-    }
-  }
-
-  function checkRightBorder() {
-    for (var i = 0; i < gameGrid.length; i++) {
-      if (gameGrid[i][9] === 1) {
-        return true;
-      }
-    }
-  }
-
   function gameStatus() {
     // check for game over. if grid below spawn point is occupied
     // then game is over
@@ -175,7 +160,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // setting next grid to equal 1
     gameGrid[row][col] = 0;
     gameGrid[row + 1][col] = 1;
-    // console.log(gameGrid);
     console.log("grid updated");
   }
 
@@ -186,12 +170,12 @@ document.addEventListener("DOMContentLoaded", function() {
   function direction(event) {
     // right arrow
     // function recognise key code
-
     if (event.keyCode === 39) {
-      if (col === 9) {
+      if (col === (width - 1)) {
         console.log(col);
         col = col;
       }
+      // checks for col on block's right
       else if (gameGrid[row][col+1]!=0) {
         checkCollision();
       }
@@ -201,7 +185,6 @@ document.addEventListener("DOMContentLoaded", function() {
         gameGrid[row][col] = 1;
         clearCanvas();
         console.log("right arrow pressed");
-        // resetMove();
       }
     }
 
@@ -210,6 +193,7 @@ document.addEventListener("DOMContentLoaded", function() {
       if (col === 0) {
         col = col;
       }
+      // checks for col on block's left
       else if (gameGrid[row][col-1]!=0) {
         checkCollision();
       }
@@ -219,15 +203,15 @@ document.addEventListener("DOMContentLoaded", function() {
         gameGrid[row][col] = 1;
         clearCanvas();
         console.log("left arrow pressed");
-      // resetMove();
       }
     }
 
     // down arrow
     else if (event.keyCode === 40) {
-      if (row === 19) {
+      if (row === (height - 1)) {
         row = row;
       }
+      // checks for block below if clock not at row 19
       else if (gameGrid[row+1][col]!=0){
         checkCollision();
       }
@@ -241,9 +225,67 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
+  // to clear lines
+  // to identify which array row needs to be cleared
+  function linesToClear() {
+  	for(var i = 0; i < gameGrid.length; i++) {
+  		var x = 0;
+  		for(var j = 0; j < gameGrid[i].length; j++) {
+  			if(gameGrid[i][j] > 0) {
+  				x++;
+  			}
+  			if(x === gameGrid[i].length) {
+  				console.log("values in row " + i + " are all greater than 0");
+          for (var k = 0; k < gameGrid[i].length; k++) {
+            gameGrid[i][k] = 0;
+				  }
+  			}
+  		}
+  	}
+  }
 
 
-  // colorCanvas();
-  // draw();
-  // console.log(gameGrid);
+
+
+
+
+
+
+
+
+
+
+
+  // function linesToClear() {
+  //   for (var j = 0; j < gameGrid.length; j++) {
+  //   	if (arrayEquals(gameGrid[j], correctArray)) {
+  //       console.log ("row " + j + " needs to be cleared");
+  //       for (var k = 0; k < gameGrid[j].length; k++) {
+	// 		       gameGrid[j][k] = 0;
+  //       }
+  //       console.log(gameGrid);
+  //   	}
+  //   }
+  // }
+  //
+  // function arrayEquals(a1, a2) {
+  //   if (a1.length !== a2.length) {
+  //   	console.log("array length not identical");
+  //     return false;
+  //   }
+  //   for (var i = 0; i < a1.length; i++) {
+  //     if (a1[i] !== a2[i]) {
+  //       console.log("array values not indentical");
+  // 	  	return false;
+  //     }
+  //   }
+  //   console.log("array identical");
+  //   return true;
+  // }
+
+
+
+
+
+
 }); // bracket for dom content loaded
