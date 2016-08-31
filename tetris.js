@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
     else if (checkBorder()) {
       clearInterval(interval);
       console.log("time stop");
-      linesToClear();
+      clearAndDrop(); // this changes to moveBlock function
       row = 0;
       newBlock();
       interval = setInterval(gameStart, 800);
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
     else if (checkCollision()) {
       clearInterval(interval);
       console.log("time stop");
-      linesToClear();
+      clearAndDrop(); // this changes to moveBlock function
       row = 0;
       newBlock();
       interval = setInterval(gameStart, 800);
@@ -225,67 +225,70 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-  // to clear lines
   // to identify which array row needs to be cleared
-  function linesToClear() {
+  // to clear lines
+  function clearAndDrop() {
+    // iterate through all rows
   	for(var i = 0; i < gameGrid.length; i++) {
   		var x = 0;
+      // iterate through each row
   		for(var j = 0; j < gameGrid[i].length; j++) {
+        // check if each value in the row is occupied
   			if(gameGrid[i][j] > 0) {
   				x++;
   			}
-  			if(x === gameGrid[i].length) {
-  				console.log("values in row " + i + " are all greater than 0");
-          for (var k = 0; k < gameGrid[i].length; k++) {
-            gameGrid[i][k] = 0;
-				  }
-  			}
   		}
+      // if whole row is filled, shift everything on top down by 1 row
+      if(x === gameGrid[i].length) {
+        console.log("values in row " + i + " are all greater than 0");
+        var k = i;
+        do {
+          // copy row on top and delete tow on top
+          for (var j = 0; j < gameGrid[k].length; j++) {
+            gameGrid[k][j] = gameGrid[k-1][j];
+            gameGrid[k-1][j] = 0;
+          }
+          if (k > 1) {
+            k--;
+          }
+        } while(rowEmpty(k-1) !== 0)
+      }
   	}
   }
 
+  function rowEmpty(rownum) {
+  	var total = 0;
+  	for (var counter = 0; counter < gameGrid[rownum].length; counter++) {
+  		total += gameGrid[rownum][counter];
+  	}
+  	return total;
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-  // function linesToClear() {
-  //   for (var j = 0; j < gameGrid.length; j++) {
-  //   	if (arrayEquals(gameGrid[j], correctArray)) {
-  //       console.log ("row " + j + " needs to be cleared");
-  //       for (var k = 0; k < gameGrid[j].length; k++) {
-	// 		       gameGrid[j][k] = 0;
+  // move block one level down if row beneath is empty
+  // and delete block
+  // function copyAndDeleteRowAbove() {
+  //   for (var i = 2; i < gameGrid.length; i++) {
+  //     for (var j = 0; j < gameGrid[i].length; j++) {
+  //       if (gameGrid[i][j - 1] !== 0) {
+  //         gameGrid[i][j] = gameGrid[i][j - 1];
+  //         gameGrid[i][j - 1] = 0;
   //       }
-  //       console.log(gameGrid);
-  //   	}
+  //     }
   //   }
   // }
   //
-  // function arrayEquals(a1, a2) {
-  //   if (a1.length !== a2.length) {
-  //   	console.log("array length not identical");
-  //     return false;
-  //   }
-  //   for (var i = 0; i < a1.length; i++) {
-  //     if (a1[i] !== a2[i]) {
-  //       console.log("array values not indentical");
-  // 	  	return false;
-  //     }
-  //   }
-  //   console.log("array identical");
-  //   return true;
+  // function moveBlock() {
+  //   clearAndDrop();
+  //   copyAndDeleteRowAbove();
   // }
 
-
-
-
+  // function deleteRowOnTop() {
+  //   for (var i = 2; i < gameGrid.length; i++) {
+  //     for (var j = 0; j < gameGrid[i].length; j++) {
+  //       gameGrid[i][j - 1] = 0;
+  //     }
+  //   }
+  // }
 
 
 }); // bracket for dom content loaded
