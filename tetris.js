@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
   console.log("DOM loaded");
 
-  //<canvas id="canvas" width="800" height="200">
+  //<canvas id="canvas" width="100" height="200">
   // o = square block
   // i = stick block
   // j = j block
@@ -12,37 +12,63 @@ document.addEventListener("DOMContentLoaded", function() {
 
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
-  var width = 10;
-  var height = 20;
+  var width = 20;
+  var height = 40;
   var col = 4; // x-axis
   var row = 0; // y-axis
-  // var dCol = 1;
-  // var dRow = 1;
 
-
-  var gameGrid =[[0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0]]
+  var gameGrid =[[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
 
 
   // gameGrid[row/10][col/10] = 1;
+
+  // var gameGrid = []
+  // for (var i = 0; i < 20; i++) {
+  //   var temp = [];
+  //   for (var i = 0; i < 10; i++) {
+  //     temp.push(0);
+  //   }
+  //   gameGrid.push(temp);
+  // }
 
   function colorCanvas() {
     for (var i = 0; i < gameGrid.length; i++) {
@@ -61,17 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-
-  // var gameGrid = []
-  // for (var i = 0; i < 20; i++) {
-  //   var temp = [];
-  //   for (var i = 0; i < 10; i++) {
-  //     temp.push(0);
-  //   }
-  //   gameGrid.push(temp);
-  // }
-
-  var interval = setInterval(gameStart, 800);
+  var interval = setInterval(gameStart, 100);
 
   // game loop
   function gameStart() {
@@ -102,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function() {
       clearAndDrop(); // this changes to moveBlock function
       row = 0;
       newBlock();
-      interval = setInterval(gameStart, 800);
+      interval = setInterval(gameStart, 100);
     }
     else if (checkCollision()) {
       clearInterval(interval);
@@ -110,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function() {
       clearAndDrop(); // this changes to moveBlock function
       row = 0;
       newBlock();
-      interval = setInterval(gameStart, 800);
+      interval = setInterval(gameStart, 100);
     }
     else {
       updateGrid();
@@ -120,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function checkBorder() {
-    if (row === 19) {
+    if (row === 39) {
       console.log(row);
       console.log('checkBorder returning true');
       row = row;
@@ -251,7 +267,7 @@ document.addEventListener("DOMContentLoaded", function() {
           if (k > 1) {
             k--;
           }
-        } while(rowEmpty(k-1) !== 0)
+        } while(rowEmpty(k-1) !== 0);
       }
   	}
   }
@@ -263,32 +279,6 @@ document.addEventListener("DOMContentLoaded", function() {
   	}
   	return total;
   }
-
-  // move block one level down if row beneath is empty
-  // and delete block
-  // function copyAndDeleteRowAbove() {
-  //   for (var i = 2; i < gameGrid.length; i++) {
-  //     for (var j = 0; j < gameGrid[i].length; j++) {
-  //       if (gameGrid[i][j - 1] !== 0) {
-  //         gameGrid[i][j] = gameGrid[i][j - 1];
-  //         gameGrid[i][j - 1] = 0;
-  //       }
-  //     }
-  //   }
-  // }
-  //
-  // function moveBlock() {
-  //   clearAndDrop();
-  //   copyAndDeleteRowAbove();
-  // }
-
-  // function deleteRowOnTop() {
-  //   for (var i = 2; i < gameGrid.length; i++) {
-  //     for (var j = 0; j < gameGrid[i].length; j++) {
-  //       gameGrid[i][j - 1] = 0;
-  //     }
-  //   }
-  // }
 
 
 }); // bracket for dom content loaded
