@@ -5,14 +5,14 @@ document.addEventListener('DOMContentLoaded', function () {
   var ctx = canvas.getContext('2d');
   var width = 20;
   var height = 40;
-  var interval = setInterval(gameStart, 100);
+  // var interval = setInterval(gameStart, 100);
   // var gameGrid = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  //                [0,0,0,0,0,0,0,0,0nde,0,0,0,0,0,0,0,0,0,0,0],
   //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -176,12 +176,12 @@ document.addEventListener('DOMContentLoaded', function () {
     for (var i = 0; i < gameGrid.length; i++) {
       for (var j = 0; j < gameGrid[i].length; j++) {
         if (gameGrid[i][j] === 1) {
-          ctx.fillStyle = "red";
+          ctx.fillStyle = "#94A3B2";
           ctx.fillRect(j*10,i*10,10,10);
           console.log("grid colored");
         }
         else if (gameGrid[i][j] === 2) {
-          ctx.fillStyle = "blue";
+          ctx.fillStyle = "black";
           ctx.fillRect(j*10,i*10,10,10);
           console.log("grid colored");
         }

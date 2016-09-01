@@ -1,6 +1,5 @@
 body {
   text-align: center;
-
 }
 
 #canvas {
@@ -11,9 +10,267 @@ body {
 }
 
 #title {
-  border: 1px solid black;
-  width: 200px;
-  height: 100px;
+  /*border: 1px solid black;*/
+  width: 400px;
+  height: 70px;
   margin: 0 auto;
   margin-top: 40px;
+  /*background-color: white;*/
+  position: relative;
+}
+
+.letter {
+  display: inline-block;
+  background-color: black;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+}
+
+/*----------------------*/
+
+#Tone {
+  margin-left: -165px;
+  margin-top: 30px;
+}
+
+#Ttwo {
+  margin-left: -150px;
+}
+
+#Tthree {
+  margin-left: -135px;
+  margin-top: 30px;
+}
+
+#Tfour {
+  margin-left: -150px;
+  margin-top: 15px;
+}
+
+#Tfive {
+  margin-left: -150px;
+  margin-top: 30px;
+}
+
+#Tsix {
+  margin-left: -150px;
+  margin-top: 45px;
+}
+
+#Tseven {
+  margin-left: -150px;
+  margin-top: 60px;
+}
+
+/*----------------------*/
+
+#Eone {
+  margin-left: -110px;
+}
+
+#Etwo {
+  margin-left: -95px;
+
+}
+
+#Ethree {
+  margin-left: -80px;
+}
+
+#Efour {
+  margin-left: -110px;
+  margin-top: 15px;
+}
+
+#Efive {
+  margin-left: -110px;
+  margin-top: 30px;
+}
+
+#Esix {
+  margin-left: -110px;
+  margin-top: 45px;
+}
+
+#Eseven {
+  margin-left: -110px;
+  margin-top: 60px;
+}
+
+#Eeight {
+  margin-left: -95px;
+  margin-top: 30px;
+}
+
+#Enine {
+  margin-left: -80px;
+  margin-top: 30px;
+}
+
+#Eten {
+  margin-left: -95px;
+  margin-top: 60px;
+}
+
+#Eeleven {
+  margin-left: -80px;
+  margin-top: 60px;
+}
+
+/*----------------------*/
+
+#TSone {
+  margin-left: -40px;
+}
+
+#TStwo {
+  margin-left: -40px;
+  margin-top: 15px;
+}
+
+#TSthree {
+  margin-left: -40px;
+  margin-top: 30px;
+}
+
+#TSfour {
+  margin-left: -40px;
+  margin-top: 45px;
+}
+
+#TSfive {
+  margin-left: -40px;
+  margin-top: 60px;
+}
+
+#TSsix {
+  margin-left: -55px;
+  margin-top: 30px;
+}
+
+#TSseven {
+  margin-left: -25px;
+  margin-top: 30px;
+}
+
+/*----------------------*/
+
+#Rone {
+  margin-left: 0px;
+}
+
+#Rtwo {
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#Rthree {
+  margin-left: 0px;
+  margin-top: 30px;
+}
+
+#Rfour {
+  margin-left: 0px;
+  margin-top: 45px;
+}
+
+#Rfive {
+  margin-left: 0px;
+  margin-top: 60px;
+}
+
+#Rsix {
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+#Rseven {
+  margin-left: 30px;
+  margin-top: 5px;
+}
+
+#Reight {
+  margin-left: 45px;
+}
+
+/*----------------------*/
+
+#Ione {
+  margin-left: 70px;
+}
+
+#Itwo {
+  margin-left: 70px;
+  margin-top: 15px;
+}
+
+#Ithree {
+  margin-left: 70px;
+  margin-top: 30px;
+}
+
+#Ifour {
+  margin-left: 70px;
+  margin-top: 45px;
+}
+
+#Ifive {
+  margin-left: 70px;
+  margin-top: 60px;
+}
+
+/*----------------------*/
+
+#Sone {
+  margin-left: 125px;
+}
+
+#Stwo {
+  margin-left: 110px;
+
+}
+
+#Sthree {
+  margin-left: 95px;
+}
+
+#Sfour {
+  margin-left: 95px;
+  margin-top: 15px;
+}
+
+#Sfive {
+  margin-left: 95px;
+  margin-top: 30px;
+}
+
+#Ssix {
+  margin-left: 110px;
+  margin-top: 30px;
+}
+
+#Sseven {
+  margin-left: 125px;
+  margin-top: 30px;
+}
+
+#Seight {
+  margin-left: 125px;
+  margin-top: 45px;
+}
+
+#Snine {
+  margin-left: 125px;
+  margin-top: 60px;
+}
+
+#Sten {
+  margin-left: 110px;
+  margin-top: 60px;
+}
+
+#Seleven {
+  margin-left: 95px;
+  margin-top: 60px;
 }
