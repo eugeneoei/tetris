@@ -430,4 +430,13 @@ document.addEventListener('DOMContentLoaded', function () {
   	return total;
   }
 
+  // design
+  // ctx.beginPath();
+  // ctx.moveTo(0,0);
+  // ctx.lineTo(0,200);
+  // // ctx.lineTo(200,100);
+  // // ctx.lineTo(70,100);
+  // ctx.strokeStyle="red";
+  // ctx.stroke();
+
 }); // bracket for dom content loaded
