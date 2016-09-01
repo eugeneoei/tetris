@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   console.log('DOM loaded');
 
-  // <canvas id="canvas" width="80" height="200">
+  // <canvas id="canvas" width="100" height="200">
   // o = square block
   // i = stick block
   // j = j block
@@ -148,11 +148,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  var interval = setInterval(gameStart, 80);
+  var interval = setInterval(gameStart, 100);
 
   // game loop
   function gameStart() {
-    drawShape();
+    // drawShape();
     checkPosition();
     clearCanvas();
     colorGrid();
@@ -165,18 +165,11 @@ document.addEventListener('DOMContentLoaded', function () {
   // }
 
   // use switch to take random value to recognise different shapes
-  function drawShape(state) {
-    if(true) {
-
-      // var Oone = new shape (1,9);
-      // var Otwo = new shape (1,10);
-      // var Othree = new shape (2,9);
-      // var Ofour = new shape (2,10);
+  function drawShape() {
       for (var i = 0; i < O.length; i++) {
         gameGrid[O[i].row][O[i].col] = 2;
         console.log("new Block");
       }
-    }
   }
 
   function setFinalLocation() {
@@ -241,7 +234,7 @@ document.addEventListener('DOMContentLoaded', function () {
       newShape();
 
       drawShape();
-      interval = setInterval(gameStart, 80);
+      interval = setInterval(gameStart, 100);
 
     }
     else if (checkCollision()) {
@@ -255,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function () {
       drawShape();
       setFinalLocation();
       newShape();
-      interval = setInterval(gameStart, 80);
+      interval = setInterval(gameStart, 100);
     }
     else {
       // check position first then update grid
@@ -354,13 +347,33 @@ document.addEventListener('DOMContentLoaded', function () {
     			isRight = true;
     		}
     		else if (gameGrid[O[i].row][(O[i].col) + 1] !== 0) {
-    		    checkCollision();
+    		    // checkCollision();
     	 	}
     	 	else {
+
             clearCanvas();
-    		    O[i].col++;
+            console.log("canvas cleared on right");
+            console.log(gameGrid[1]);
+            console.log(gameGrid[2]);
+            console.log(gameGrid[3]);
+            console.log(gameGrid[4]);
+            console.log(gameGrid[5]);
+            console.log(gameGrid[6]);
+
+            for (var i = 0; i < O.length; i++) {
+              gameGrid[O[i].row][O[i].col] = 0;
+            }
+
+            O[0].col++;
+            O[1].col++;
+            O[2].col++;
+            O[3].col++;
             drawShape();
-            gameGrid[O[i].row][O[i].col -1] = 0;
+            // console.log(gameGrid);
+            // debugger;
+
+
+            // gameGrid[O[i].row][O[i].col -1] = 0;
             // gameGrid[O[i].row][O[i].col] = 1;
 
 
@@ -405,9 +418,17 @@ document.addEventListener('DOMContentLoaded', function () {
     			checkCollision();
     		}
     		else {
-    			O[i].col--;
-    			clearCanvas();
-    			drawBlock();
+          clearCanvas();
+
+          for (var i = 0; i < O.length; i++) {
+            gameGrid[O[i].row][O[i].col] = 0;
+          }
+
+          O[0].col--;
+          O[1].col--;
+          O[2].col--;
+          O[3].col--;
+          drawShape();
     		console.log("left arrow pressed");
     		}
     	}
@@ -447,9 +468,18 @@ document.addEventListener('DOMContentLoaded', function () {
     			checkCollision();
     		}
     		else {
-    			O[i].row++;
-    			clearCanvas();
-    			drawBlock();
+          clearCanvas();
+
+          for (var i = 0; i < O.length; i++) {
+            gameGrid[O[i].row][O[i].col] = 0;
+          }
+
+          O[0].row++;
+          O[1].row++;
+          O[2].row++;
+          O[3].row++;
+
+    			drawShape();
     			console.log("down arrow pressed");
     		}
     	}
