@@ -5,50 +5,10 @@ document.addEventListener('DOMContentLoaded', function () {
   var ctx = canvas.getContext('2d');
   var width = 20;
   var height = 40;
-  // var interval = setInterval(gameStart, 100);
-  // var gameGrid = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0nde,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  //                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]];
-  //
-
+  var interval;
   var gameGrid = []
+
+  // generate array to store values
   for (var i = 0; i < 40; i++) {
     var temp = [];
     for (var j = 0; j < 20; j++) {
@@ -66,8 +26,11 @@ document.addEventListener('DOMContentLoaded', function () {
   var cubeTwo = new block (1,10);
   var cubeThree = new block (2,9);
   var cubeFour = new block (2,10);
-
   var shape = [cubeOne,cubeTwo,cubeThree,cubeFour];
+
+  function initiateTimer() {
+    interval = setInterval(gameStart, 100);
+  }
 
   function newShape() {
     var num = Math.random();
@@ -172,22 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
     cubeFour.col = 10;
   }
 
-  function colorGrid() {
-    for (var i = 0; i < gameGrid.length; i++) {
-      for (var j = 0; j < gameGrid[i].length; j++) {
-        if (gameGrid[i][j] === 1) {
-          ctx.fillStyle = "#94A3B2";
-          ctx.fillRect(j*10,i*10,10,10);
-          console.log("grid colored");
-        }
-        else if (gameGrid[i][j] === 2) {
-          ctx.fillStyle = "black";
-          ctx.fillRect(j*10,i*10,10,10);
-          console.log("grid colored");
-        }
-      }
-    }
-  }
+
 
   // game loop
   function gameStart() {
@@ -196,28 +144,10 @@ document.addEventListener('DOMContentLoaded', function () {
     colorGrid();
   }
 
-  function drawShape() {
-      for (var i = 0; i < shape.length; i++) {
-        gameGrid[shape[i].row][shape[i].col] = 2;
-        console.log("new Block");
-      }
-  }
-
-  function setFinalLocation() {
-    for (var i = 0; i < shape.length; i++) {
-      gameGrid[shape[i].row][shape[i].col] = 1;
-    }
-  }
-
-  function clearCanvas() {
-    ctx.clearRect(0,0,width*10,height*10);
-    console.log("canvas cleared");
-  }
-
   function checkPosition() {
     // this part is still WIP
     // if (gameStatus()) {
-    //   clearInterval(interval);
+    //   clearInterval(initiateTimer());
     //   console.log("game over");
     // }
     // else
@@ -250,6 +180,41 @@ document.addEventListener('DOMContentLoaded', function () {
       shape[2].row++;
       shape[3].row++;
       drawShape();
+    }
+  }
+
+  function drawShape() {
+      for (var i = 0; i < shape.length; i++) {
+        gameGrid[shape[i].row][shape[i].col] = 2;
+        console.log("new Block");
+      }
+  }
+
+  function setFinalLocation() {
+    for (var i = 0; i < shape.length; i++) {
+      gameGrid[shape[i].row][shape[i].col] = 1;
+    }
+  }
+
+  function clearCanvas() {
+    ctx.clearRect(0,0,width*10,height*10);
+    console.log("canvas cleared");
+  }
+
+  function colorGrid() {
+    for (var i = 0; i < gameGrid.length; i++) {
+      for (var j = 0; j < gameGrid[i].length; j++) {
+        if (gameGrid[i][j] === 1) {
+          ctx.fillStyle = "#94A3B2";
+          ctx.fillRect(j*10,i*10,10,10);
+          console.log("grid colored");
+        }
+        else if (gameGrid[i][j] === 2) {
+          ctx.fillStyle = "black";
+          ctx.fillRect(j*10,i*10,10,10);
+          console.log("grid colored");
+        }
+      }
     }
   }
 
@@ -308,7 +273,8 @@ document.addEventListener('DOMContentLoaded', function () {
     			isRight = true;
     		}
     		else if (gameGrid[shape[i].row][(shape[i].col) + 1] !== 0) {
-    		    // checkCollision();
+            shape[i].col = shape[i].col;
+            // checkCollision();
     	 	}
     	 	else {
             clearCanvas();
@@ -340,7 +306,8 @@ document.addEventListener('DOMContentLoaded', function () {
     		}
     		// checks for col on block's left
     		else if (gameGrid[shape[i].row][(shape[i].col) - 1] !== 0) {
-    			// checkCollision();
+          shape[i].col = shape[i].col;
+          // checkCollision();
     		}
     		else {
           clearCanvas();
@@ -390,6 +357,10 @@ document.addEventListener('DOMContentLoaded', function () {
     		}
     	}
     }
+    // spacebar to start timer
+    else if (event.keyCode === 32) {
+      initiateTimer();
+    }
   }
 
   // to identify which array row needs to be cleared
@@ -429,14 +400,5 @@ document.addEventListener('DOMContentLoaded', function () {
   	}
   	return total;
   }
-
-  // design
-  // ctx.beginPath();
-  // ctx.moveTo(0,0);
-  // ctx.lineTo(0,200);
-  // // ctx.lineTo(200,100);
-  // // ctx.lineTo(70,100);
-  // ctx.strokeStyle="red";
-  // ctx.stroke();
 
 }); // bracket for dom content loaded
