@@ -1,17 +1,58 @@
 document.addEventListener('DOMContentLoaded', function () {
-  console.log('DOM loaded');
+  // console.log('DOM loaded');
 
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
   var width = 20;
   var height = 40;
   var interval;
-  var gameGrid = []
+  var gameGrid = [];
+
+  // var gameGrid = [[10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10]]
 
   // generate array to store values
-  for (var i = 0; i < 40; i++) {
+  for (var i = 0; i < height; i++) {
     var temp = [];
-    for (var j = 0; j < 20; j++) {
+    for (var j = 0; j < width; j++) {
       temp.push(0);
     }
     gameGrid.push(temp);
@@ -29,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var shape = [cubeOne,cubeTwo,cubeThree,cubeFour];
 
   function initiateTimer() {
-    interval = setInterval(gameStart, 100);
+    interval = setInterval(gameStart, 500);
   }
 
   function newShape() {
@@ -56,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
       newZ();
     }
   }
-
+   // use object constructor to create blocks here
   function newO() {
     cubeOne.row = 0;
     cubeOne.col = 9;
@@ -81,64 +122,65 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function newL() {
     cubeOne.row = 0;
-    cubeOne.col = 9;
+    cubeOne.col = 8;
     cubeTwo.row = 1;
-    cubeTwo.col = 9;
+    cubeTwo.col = 8;
     cubeThree.row = 2;
-    cubeThree.col = 9;
+    cubeThree.col = 8;
     cubeFour.row = 2;
-    cubeFour.col = 10;
+    cubeFour.col = 9;
 
   }
 
   function newJ() {
     cubeOne.row = 0;
-    cubeOne.col = 10;
+    cubeOne.col = 9;
     cubeTwo.row = 1;
-    cubeTwo.col = 10;
+    cubeTwo.col = 9;
     cubeThree.row = 2;
-    cubeThree.col = 10;
+    cubeThree.col = 9;
     cubeFour.row = 2;
-    cubeFour.col = 9;
+    cubeFour.col = 8;
   }
 
   function newT() {
     cubeOne.row = 0;
-    cubeOne.col = 8;
+    cubeOne.col = 7;
     cubeTwo.row = 0;
-    cubeTwo.col = 9;
+    cubeTwo.col = 8;
     cubeThree.row = 0;
-    cubeThree.col = 10;
-    cubeFour.row = 1;
-    cubeFour.col = 9;
-  }
-
-  function newS() {
-    cubeOne.row = 0;
-    cubeOne.col = 9;
-    cubeTwo.row = 0;
-    cubeTwo.col = 10;
-    cubeThree.row = 1;
     cubeThree.col = 9;
     cubeFour.row = 1;
     cubeFour.col = 8;
   }
 
-  function newZ() {
+  function newS() {
     cubeOne.row = 0;
     cubeOne.col = 8;
     cubeTwo.row = 0;
     cubeTwo.col = 9;
     cubeThree.row = 1;
-    cubeThree.col = 9;
+    cubeThree.col = 8;
     cubeFour.row = 1;
-    cubeFour.col = 10;
+    cubeFour.col = 7;
+  }
+
+  function newZ() {
+    cubeOne.row = 0;
+    cubeOne.col = 7;
+    cubeTwo.row = 0;
+    cubeTwo.col = 8;
+    cubeThree.row = 1;
+    cubeThree.col = 8;
+    cubeFour.row = 1;
+    cubeFour.col = 9;
   }
 
 
 
   // game loop
   function gameStart() {
+    drawShape();
     checkPosition();
     clearCanvas();
     colorGrid();
@@ -148,26 +190,26 @@ document.addEventListener('DOMContentLoaded', function () {
     // this part is still WIP
     // if (gameStatus()) {
     //   clearInterval(initiateTimer());
-    //   console.log("game over");
+      // console.log("game over");
     // }
     // else
     if (checkBaseline()) {
       clearInterval(interval);
-      console.log("time stop");
+      // console.log("time stop");
       clearAndDrop();
       setFinalLocation();
       newShape();
       drawShape();
-      interval = setInterval(gameStart, 100);
+      interval = setInterval(gameStart, 500);
     }
-    else if (checkCollision()) {
+    else if (checkBottomCollision()) {
       clearInterval(interval);
-      console.log("time stop");
+      // console.log("time stop");
       clearAndDrop();
       drawShape();
       setFinalLocation();
       newShape();
-      interval = setInterval(gameStart, 100);
+      interval = setInterval(gameStart, 500);
     }
     else {
       // check position first then update grid
@@ -186,7 +228,8 @@ document.addEventListener('DOMContentLoaded', function () {
   function drawShape() {
       for (var i = 0; i < shape.length; i++) {
         gameGrid[shape[i].row][shape[i].col] = 2;
-        console.log("new Block");
+        // console.log("new Block");
+        console.log(gameGrid[shape[i].row]);
       }
   }
 
@@ -198,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function clearCanvas() {
     ctx.clearRect(0,0,width*10,height*10);
-    console.log("canvas cleared");
+    // console.log("canvas cleared");
   }
 
   function colorGrid() {
@@ -207,12 +250,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (gameGrid[i][j] === 1) {
           ctx.fillStyle = "#94A3B2";
           ctx.fillRect(j*10,i*10,10,10);
-          console.log("grid colored");
+          // console.log("grid colored");
         }
         else if (gameGrid[i][j] === 2) {
           ctx.fillStyle = "black";
           ctx.fillRect(j*10,i*10,10,10);
-          console.log("grid colored");
+          // console.log("grid colored");
         }
       }
     }
@@ -230,12 +273,33 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // for collison, check from bottom up if any cubes beneath are occupied
-  function checkCollision() {
-    var isCollided = false;
+  function checkBottomCollision() {
+    var isBottomCollided = false;
     for (var i = shape.length-1; i >= 0; i--) {
       if(gameGrid[(shape[i].row) + 1][shape[i].col] === 1) {
-        isCollided = true;
-        return isCollided;
+        gameGrid[shape[i].row] = gameGrid[shape[i].row]
+        isBottomCollided = true;
+        return isBottomCollided;
+      }
+    }
+  }
+
+  function checkRightCollision() {
+    var isRightCollided = false;
+    for (var i = shape.length-1; i >= 0; i--) {
+      if(gameGrid[shape[i].row][(shape[i].col) + 1] === 1) {
+        isRightCollided = true;
+        return isRightCollided;
+      }
+    }
+  }
+
+  function checkLeftCollision() {
+    var isLeftCollided = false;
+    for (var i = shape.length-1; i >= 0; i--) {
+      if(gameGrid[shape[i].row][(shape[i].col) - 1] === 1) {
+        isLeftCollided = true;
+        return isLeftCollided;
       }
     }
   }
@@ -257,7 +321,7 @@ document.addEventListener('DOMContentLoaded', function () {
     for (var i = 0; i < shape.length; i++) {
       gameGrid[shape[i].row][shape[i].col] = 0;
       gameGrid[(shape[i].row) + 1][shape[i].col] = 1;
-      console.log("grid updated");
+      // console.log("grid updated");
     }
   }
 
@@ -268,32 +332,39 @@ document.addEventListener('DOMContentLoaded', function () {
     // right arrow
     if (event.keyCode === 39) {
     	var isRight = false;
+      console.log(shape, "MY SHAPE");
     	for (var i = 0; i < shape.length; i++) {
-    		if(shape[i].col === (width - 1)) {
+        // checks for right wall
+        // console.log(gameGrid[shape[i].row][(shape[i].col)]);
+        // console.log(gameGrid[shape[i].row]); // PROBLEM IS HERE
+    		if(shape[i].col === width - 1) {
+          // shape[i].col = shape[i].col;
     			isRight = true;
+          // console.log(isRight, "sasdbasjdbahsbdkjhsbkdhjbaksg");
+          // console.log(shape[i], i);
+          // break;
     		}
-    		else if (gameGrid[shape[i].row][(shape[i].col) + 1] !== 0) {
+        // checks if block's right is occupied
+        else if (checkRightCollision()) {
             shape[i].col = shape[i].col;
-            // checkCollision();
+            // break;
     	 	}
     	 	else {
             clearCanvas();
             console.log("canvas cleared on right");
             for (var i = 0; i < shape.length; i++) {
               gameGrid[shape[i].row][shape[i].col] = 0;
+              shape[i].col++;
+              console.log(gameGrid[shape[i].row])
             }
-            shape[0].col++;
-            shape[1].col++;
-            shape[2].col++;
-            shape[3].col++;
             drawShape();
-    		    console.log("right arrow pressed");
+    		    // console.log("right arrow pressed");
     		}
-    	}
-      if(isRight) {
-        for (var i = 0; i < shape.length; i++) {
-          shape[i].col = shape[i].col;
-		    }
+        if(isRight) { // THIS WAS SHIFTED INTO THE FOR LOOP
+          for (var i = 0; i < shape.length; i++) {
+            shape[i].col = shape[i].col;
+  		    }
+        }
       }
     }
 
@@ -305,19 +376,15 @@ document.addEventListener('DOMContentLoaded', function () {
     			isLeft = true;
     		}
     		// checks for col on block's left
-    		else if (gameGrid[shape[i].row][(shape[i].col) - 1] !== 0) {
+    		else if (checkLeftCollision()) {
           shape[i].col = shape[i].col;
-          // checkCollision();
     		}
     		else {
           clearCanvas();
           for (var i = 0; i < shape.length; i++) {
             gameGrid[shape[i].row][shape[i].col] = 0;
-          };
-          shape[0].col--;
-          shape[1].col--;
-          shape[2].col--;
-          shape[3].col--;
+            shape[i].col--;
+          }
           drawShape();
     		}
     	}
@@ -335,9 +402,12 @@ document.addEventListener('DOMContentLoaded', function () {
     			if (shape[i].row === (height - 1)) {
     				isDown = true;
     		}
-    		// checks for block below if clock not at row 19
+    		// checks for block below if block not at row 39
     		else if (gameGrid[(shape[i].row) + 1][shape[i].col] !== 0) {
-    			checkCollision();
+    			checkBottomCollision();
+          // for (var i = shape.length-1; i >= 0; i--) {
+          //   gameGrid[shape[i].row] = gameGrid[shape[i].row]
+          // }
     		}
     		else {
           clearCanvas();
@@ -377,7 +447,7 @@ document.addEventListener('DOMContentLoaded', function () {
   		}
       // if whole row is filled, shift everything on top down by 1 row
       if(x === gameGrid[i].length) {
-        console.log("values in row " + i + " are all greater than 0");
+        // console.log("values in row " + i + " are all greater than 0");
         var k = i;
         do {
           // copy row on top and delete tow on top
