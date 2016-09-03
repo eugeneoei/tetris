@@ -394,7 +394,6 @@ document.addEventListener('DOMContentLoaded', function () {
     		}
     	}
     }
-
     // down arrow
     else if (event.keyCode === 40) {
     	var isDown = false;
@@ -403,21 +402,15 @@ document.addEventListener('DOMContentLoaded', function () {
     				isDown = true;
     		}
     		// checks for block below if block not at row 39
-    		else if (gameGrid[(shape[i].row) + 1][shape[i].col] !== 0) {
-    			checkBottomCollision();
-          // for (var i = shape.length-1; i >= 0; i--) {
-          //   gameGrid[shape[i].row] = gameGrid[shape[i].row]
-          // }
+        else if (checkBottomCollision()) {
+          gameGrid[shape[i].row] = gameGrid[shape[i].row];
     		}
     		else {
           clearCanvas();
           for (var i = 0; i < shape.length; i++) {
             gameGrid[shape[i].row][shape[i].col] = 0;
+            shape[i].row++;
           }
-          shape[0].row++;
-          shape[1].row++;
-          shape[2].row++;
-          shape[3].row++;
     			drawShape();
     		}
     	}
