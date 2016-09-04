@@ -18,15 +18,15 @@ document.addEventListener('DOMContentLoaded', function () {
     gameGrid.push(temp);
   }
 
-  function block (row, col) {
+  function cube (row, col) {
   	this.row = row;
   	this.col = col;
   }
 
-  var cubeOne = new block (1,9);
-  var cubeTwo = new block (1,10);
-  var cubeThree = new block (2,9);
-  var cubeFour = new block (2,10);
+  var cubeOne = new cube (1,9);
+  var cubeTwo = new cube (1,10);
+  var cubeThree = new cube (2,9);
+  var cubeFour = new cube (2,10);
   var shape = [cubeOne,cubeTwo,cubeThree,cubeFour];
 
   function initiateTimer() {
@@ -36,31 +36,24 @@ document.addEventListener('DOMContentLoaded', function () {
   function newShape() {
     var num = Math.random();
     if (num <= .14) {
-      currentShape = "O";
       newO();
     }
     else if (num <= .28) {
-      currentShape = "I";
       newI();
     }
     else if (num <= .42) {
-      currentShape = "L";
       newL();
     }
     else if (num <= .56) {
-      currentShape = "J";
       newJ();
     }
     else if (num <= .7) {
-      currentShape = "T";
       newT();
     }
     else if (num <= .84) {
-      currentShape = "S";
       newS();
     }
     else if (num <= 1) {
-      currentShape = "Z";
       newZ();
     }
   }
@@ -74,6 +67,9 @@ document.addEventListener('DOMContentLoaded', function () {
     cubeThree.col = 9;
     cubeFour.row = 1;
     cubeFour.col = 10;
+    currentShape = "posOneO";
+    // O shape does not need rotation
+    // so does not need to be tracked
   }
 
   function newI() {
@@ -403,10 +399,12 @@ document.addEventListener('DOMContentLoaded', function () {
     		}
     	}
     }
+    // up arrow
     else if (event.keyCode === 38) {
       // cubeThree is the pivot for shape I
       // pivot's position does not change
-      // have not added rotation restriction
+      // have not added rotation restriction ie when at wall,
+      // pivot's position has to move
       if (currentShape === "posOneI") {
         rotate();
         cubeOne.row = cubeThree.row;
@@ -555,10 +553,10 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       else if (currentShape === "posTwoJ") {
         rotate();
-        cubeOne.row = cubeThree.row - 2;
+        cubeOne.row = cubeThree.row + 2;
         cubeOne.col = cubeThree.col;
 
-        cubeTwo.row = cubeThree.row - 1;
+        cubeTwo.row = cubeThree.row + 1;
         cubeTwo.col = cubeThree.col;
 
         cubeFour.row = cubeThree.row;
