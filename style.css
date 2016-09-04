@@ -51,6 +51,7 @@ body {
 #Tfive {
   margin-left: -150px;
   margin-top: 30px;
+  background-color: red;
 }
 
 #Tsix {
@@ -132,6 +133,7 @@ body {
 #TSthree {
   margin-left: -40px;
   margin-top: 30px;
+  background-color: red;
 }
 
 #TSfour {
@@ -198,21 +200,22 @@ body {
 
 #Ione {
   margin-left: 70px;
+  background-color: red;
 }
 
 #Itwo {
   margin-left: 70px;
-  margin-top: 15px;
+  margin-top: 21px;
 }
 
 #Ithree {
   margin-left: 70px;
-  margin-top: 30px;
+  margin-top: 34px;
 }
 
 #Ifour {
   margin-left: 70px;
-  margin-top: 45px;
+  margin-top: 47px;
 }
 
 #Ifive {

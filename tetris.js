@@ -276,6 +276,27 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  function checkRightWall() {
+    var isRight = false;
+    console.log(shape, "MY SHAPE");
+    for (var i = 0; i < shape.length; i++) {
+      if(shape[i].col === (width - 1)) {
+        isRight = true;
+        return isRight;
+      }
+    }
+  }
+
+  function checkLeftWall() {
+    var isLeft = false;
+    for (var i = 0; i < shape.length; i++) {
+      if(shape[i].col === 0) {
+        isLeft = true;
+        return isLeft;
+      }
+    }
+  }
+
   // check for game over. if grid below spawn point is occupied then game is over
   // this part is not completed yet
   function gameStatus() {
@@ -310,42 +331,24 @@ document.addEventListener('DOMContentLoaded', function () {
   function direction(event) {
     // right arrow
     if (event.keyCode === 39) {
-    	var isRight = false;
-      console.log(shape, "MY SHAPE");
-    	for (var i = 0; i < shape.length; i++) {
-        // checks for right wall
-        // console.log(gameGrid[shape[i].row][(shape[i].col)]);
-        // console.log(gameGrid[shape[i].row]); // PROBLEM IS HERE
-    		if(shape[i].col === width - 1) {
-          // shape[i].col = shape[i].col;
-    			isRight = true;
-          console.log(isRight);
-          // console.log(isRight, "sasdbasjdbahsbdkjhsbkdhjbaksg");
-          // console.log(shape[i], i);
-          // break;
-    		}
-        // checks if block's right is occupied
-        else if (checkRightCollision()) {
-            shape[i].col = shape[i].col;
-            // break;
-    	 	}
-    	 	else {
-            clearCanvas();
-            console.log("canvas cleared on right");
-            for (var i = 0; i < shape.length; i++) {
-              gameGrid[shape[i].row][shape[i].col] = 0;
-              shape[i].col++;
-              console.log(gameGrid[shape[i].row])
-            }
-            drawShape();
-    		    // console.log("right arrow pressed");
-    		}
-        if(isRight) { // THIS WAS SHIFTED INTO THE FOR LOOP
-          for (var i = 0; i < shape.length; i++) {
-            shape[i].col = shape[i].col;
-  		    }
+      if(checkRightWall()) { // THIS WAS SHIFTED INTO THE FOR LOOP
+        for (var i = 0; i < shape.length; i++) {
+          shape[i].col = shape[i].col;
         }
       }
+      // checks if block's right is occupied
+      else if (checkRightCollision()) {
+          shape[i].col = shape[i].col;
+  	 	}
+      // otherwise move block one col right
+  	 	else {
+          clearCanvas();
+          for (var i = 0; i < shape.length; i++) {
+            gameGrid[shape[i].row][shape[i].col] = 0;
+            shape[i].col++;
+          }
+          drawShape();
+  		}
     }
 
     // left arrow
@@ -403,6 +406,7 @@ document.addEventListener('DOMContentLoaded', function () {
     else if (event.keyCode === 38) {
       // cubeThree is the pivot for shape I
       // pivot's position does not change
+      // have not added rotation restriction
       if (currentShape === "posOneI") {
         rotate();
         cubeOne.row = cubeThree.row;
