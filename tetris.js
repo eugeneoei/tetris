@@ -7,47 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var height = 40;
   var interval;
   var gameGrid = [];
-
-  // var gameGrid = [[10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
-  //                 [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10]]
+  var currentShape;
 
   // generate array to store values
   for (var i = 0; i < height; i++) {
@@ -76,24 +36,31 @@ document.addEventListener('DOMContentLoaded', function () {
   function newShape() {
     var num = Math.random();
     if (num <= .14) {
+      currentShape = "O";
       newO();
     }
     else if (num <= .28) {
+      currentShape = "I";
       newI();
     }
     else if (num <= .42) {
+      currentShape = "L";
       newL();
     }
     else if (num <= .56) {
+      currentShape = "J";
       newJ();
     }
     else if (num <= .7) {
+      currentShape = "T";
       newT();
     }
     else if (num <= .84) {
+      currentShape = "S";
       newS();
     }
     else if (num <= 1) {
+      currentShape = "Z";
       newZ();
     }
   }
@@ -118,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
     cubeThree.col = 9;
     cubeFour.row = 3;
     cubeFour.col = 9;
+    currentShape = "posOneI";
   }
 
   function newL() {
@@ -129,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
     cubeThree.col = 8;
     cubeFour.row = 2;
     cubeFour.col = 9;
-
+    currentShape = "posOneL";
   }
 
   function newJ() {
@@ -141,39 +109,43 @@ document.addEventListener('DOMContentLoaded', function () {
     cubeThree.col = 9;
     cubeFour.row = 2;
     cubeFour.col = 8;
+    currentShape = "posOneJ";
   }
 
   function newT() {
     cubeOne.row = 0;
-    cubeOne.col = 7;
+    cubeOne.col = 8;
     cubeTwo.row = 0;
-    cubeTwo.col = 8;
+    cubeTwo.col = 9;
     cubeThree.row = 0;
-    cubeThree.col = 9;
+    cubeThree.col = 10;
     cubeFour.row = 1;
-    cubeFour.col = 8;
+    cubeFour.col = 9;
+    currentShape = "posOneT";
   }
 
   function newS() {
+    cubeOne.row = 0;
+    cubeOne.col = 9;
+    cubeTwo.row = 0;
+    cubeTwo.col = 10;
+    cubeThree.row = 1;
+    cubeThree.col = 9;
+    cubeFour.row = 1;
+    cubeFour.col = 8;
+    currentShape = "posOneS";
+  }
+
+  function newZ() {
     cubeOne.row = 0;
     cubeOne.col = 8;
     cubeTwo.row = 0;
     cubeTwo.col = 9;
     cubeThree.row = 1;
-    cubeThree.col = 8;
+    cubeThree.col = 9;
     cubeFour.row = 1;
-    cubeFour.col = 7;
-  }
-
-  function newZ() {
-    cubeOne.row = 0;
-    cubeOne.col = 7;
-    cubeTwo.row = 0;
-    cubeTwo.col = 8;
-    cubeThree.row = 1;
-    cubeThree.col = 8;
-    cubeFour.row = 1;
-    cubeFour.col = 9;
+    cubeFour.col = 10;
+    currentShape = "posOneZ";
   }
 
 
@@ -325,6 +297,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  function rotate() {
+    clearCanvas();
+    for (var i = 0; i < shape.length; i++) {
+      gameGrid[shape[i].row][shape[i].col] = 0;
+    }
+  }
+
   document.addEventListener("keydown", direction);
 
   // keypad arrows
@@ -340,6 +319,7 @@ document.addEventListener('DOMContentLoaded', function () {
     		if(shape[i].col === width - 1) {
           // shape[i].col = shape[i].col;
     			isRight = true;
+          console.log(isRight);
           // console.log(isRight, "sasdbasjdbahsbdkjhsbkdhjbaksg");
           // console.log(shape[i], i);
           // break;
@@ -419,6 +399,249 @@ document.addEventListener('DOMContentLoaded', function () {
     			shape[i].col = shape[i].col;
     		}
     	}
+    }
+    else if (event.keyCode === 38) {
+      // cubeThree is the pivot for shape I
+      // pivot's position does not change
+      if (currentShape === "posOneI") {
+        rotate();
+        cubeOne.row = cubeThree.row;
+        cubeOne.col = cubeThree.col + 2;
+
+        cubeTwo.row = cubeThree.row;
+        cubeTwo.col = cubeThree.col + 1;
+
+        cubeFour.row = cubeThree.row;
+        cubeFour.col = cubeThree.col - 1;
+        drawShape();
+        currentShape = "posTwoI";
+      }
+      else if (currentShape === "posTwoI") {
+        rotate();
+        cubeOne.row = cubeThree.row - 2;
+        cubeOne.col = cubeThree.col;
+
+        cubeTwo.row = cubeThree.row - 1;
+        cubeTwo.col = cubeThree.col;
+
+        cubeFour.row = cubeThree.row + 1;
+        cubeFour.col = cubeThree.col;
+        drawShape();
+        currentShape = "posOneI";
+      }
+      // cubeTwo is pivot for shape T
+      else if (currentShape === "posOneT") {
+        rotate();
+        cubeOne.row = cubeTwo.row - 1;
+        cubeOne.col = cubeTwo.col;
+
+        cubeThree.row = cubeTwo.row + 1;
+        cubeThree.col = cubeTwo.col;
+
+        cubeFour.row = cubeTwo.row;
+        cubeFour.col = cubeTwo.col - 1;
+        drawShape();
+        currentShape = "posTwoT";
+      }
+      else if (currentShape === "posTwoT") {
+        rotate();
+        cubeOne.row = cubeTwo.row;
+        cubeOne.col = cubeTwo.col + 1;
+
+        cubeThree.row = cubeTwo.row;
+        cubeThree.col = cubeTwo.col - 1;
+
+        cubeFour.row = cubeTwo.row - 1;
+        cubeFour.col = cubeTwo.col;
+        drawShape();
+        currentShape = "posThreeT";
+      }
+      else if (currentShape === "posThreeT") {
+        rotate();
+        cubeOne.row = cubeTwo.row + 1;
+        cubeOne.col = cubeTwo.col;
+
+        cubeThree.row = cubeTwo.row - 1;
+        cubeThree.col = cubeTwo.col;
+
+        cubeFour.row = cubeTwo.row;
+        cubeFour.col = cubeTwo.col + 1;
+        drawShape();
+        currentShape = "posFourT";
+      }
+      else if (currentShape === "posFourT") {
+        rotate();
+        cubeOne.row = cubeTwo.row;
+        cubeOne.col = cubeTwo.col - 1;
+
+        cubeThree.row = cubeTwo.row;
+        cubeThree.col = cubeTwo.col + 1;
+
+        cubeFour.row = cubeTwo.row + 1;
+        cubeFour.col = cubeTwo.col;
+        drawShape();
+        currentShape = "posOneT";
+      }
+      // cubeThree is pivot for shape L
+      else if (currentShape === "posOneL") {
+        rotate();
+        cubeOne.row = cubeThree.row;
+        cubeOne.col = cubeThree.col + 2;
+
+        cubeTwo.row = cubeThree.row;
+        cubeTwo.col = cubeThree.col + 1;
+
+        cubeFour.row = cubeThree.row + 1;
+        cubeFour.col = cubeThree.col;
+        drawShape();
+        currentShape = "posTwoL";
+      }
+      else if (currentShape === "posTwoL") {
+        rotate();
+        cubeOne.row = cubeThree.row + 2;
+        cubeOne.col = cubeThree.col;
+
+        cubeTwo.row = cubeThree.row + 1;
+        cubeTwo.col = cubeThree.col;
+
+        cubeFour.row = cubeThree.row;
+        cubeFour.col = cubeThree.col - 1;
+        drawShape();
+        currentShape = "posThreeL";
+      }
+      else if (currentShape === "posThreeL") {
+        rotate();
+        cubeOne.row = cubeThree.row;
+        cubeOne.col = cubeThree.col - 2;
+
+        cubeTwo.row = cubeThree.row;
+        cubeTwo.col = cubeThree.col - 1;
+
+        cubeFour.row = cubeThree.row - 1;
+        cubeFour.col = cubeThree.col;
+        drawShape();
+        currentShape = "posFourL";
+      }
+      else if (currentShape === "posFourL") {
+        rotate();
+        cubeOne.row = cubeThree.row - 2;
+        cubeOne.col = cubeThree.col;
+
+        cubeTwo.row = cubeThree.row - 1;
+        cubeTwo.col = cubeThree.col;
+
+        cubeFour.row = cubeThree.row;
+        cubeFour.col = cubeThree.col  + 1;
+        drawShape();
+        currentShape = "posOneL";
+      }
+      // cubeThree is pivot for shape J
+      else if (currentShape === "posOneJ") {
+        rotate();
+        cubeOne.row = cubeThree.row;
+        cubeOne.col = cubeThree.col + 2;
+
+        cubeTwo.row = cubeThree.row;
+        cubeTwo.col = cubeThree.col + 1;
+
+        cubeFour.row = cubeThree.row - 1;
+        cubeFour.col = cubeThree.col;
+        drawShape();
+        currentShape = "posTwoJ";
+      }
+      else if (currentShape === "posTwoJ") {
+        rotate();
+        cubeOne.row = cubeThree.row - 2;
+        cubeOne.col = cubeThree.col;
+
+        cubeTwo.row = cubeThree.row - 1;
+        cubeTwo.col = cubeThree.col;
+
+        cubeFour.row = cubeThree.row;
+        cubeFour.col = cubeThree.col + 1;
+        drawShape();
+        currentShape = "posThreeJ";
+      }
+      else if (currentShape === "posThreeJ") {
+        rotate();
+        cubeOne.row = cubeThree.row;
+        cubeOne.col = cubeThree.col - 2;
+
+        cubeTwo.row = cubeThree.row;
+        cubeTwo.col = cubeThree.col - 1;
+
+        cubeFour.row = cubeThree.row + 1;
+        cubeFour.col = cubeThree.col;
+        drawShape();
+        currentShape = "posFourJ";
+      }
+      else if (currentShape === "posFourJ") {
+        rotate();
+        cubeOne.row = cubeThree.row - 2;
+        cubeOne.col = cubeThree.col;
+
+        cubeTwo.row = cubeThree.row - 1;
+        cubeTwo.col = cubeThree.col;
+
+        cubeFour.row = cubeThree.row;
+        cubeFour.col = cubeThree.col - 1;
+        drawShape();
+        currentShape = "posOneJ";
+      }
+      // cubeThree is pivot for shape S
+      else if (currentShape === "posOneS") {
+        rotate();
+        cubeOne.row = cubeThree.row;
+        cubeOne.col = cubeThree.col + 1;
+
+        cubeTwo.row = cubeThree.row + 1;
+        cubeTwo.col = cubeThree.col + 1;
+
+        cubeFour.row = cubeThree.row - 1;
+        cubeFour.col = cubeThree.col;
+        drawShape();
+        currentShape = "posTwoS";
+      }
+      else if (currentShape === "posTwoS") {
+        rotate();
+        cubeOne.row = cubeThree.row - 1;
+        cubeOne.col = cubeThree.col;
+
+        cubeTwo.row = cubeThree.row - 1;
+        cubeTwo.col = cubeThree.col + 1;
+
+        cubeFour.row = cubeThree.row;
+        cubeFour.col = cubeThree.col - 1;
+        drawShape();
+        currentShape = "posOneS";
+      }
+      // cubeThree is pivot for shape Z
+      else if (currentShape === "posOneZ") {
+        rotate();
+        cubeOne.row = cubeThree.row - 1;
+        cubeOne.col = cubeThree.col + 1;
+
+        cubeTwo.row = cubeThree.row;
+        cubeTwo.col = cubeThree.col + 1;
+
+        cubeFour.row = cubeThree.row + 1;
+        cubeFour.col = cubeThree.col;
+        drawShape();
+        currentShape = "posTwoZ";
+      }
+      else if (currentShape === "posTwoZ") {
+        rotate();
+        cubeOne.row = cubeThree.row - 1;
+        cubeOne.col = cubeThree.col - 1;
+
+        cubeTwo.row = cubeThree.row - 1;
+        cubeTwo.col = cubeThree.col;
+
+        cubeFour.row = cubeThree.row;
+        cubeFour.col = cubeThree.col + 1;
+        drawShape();
+        currentShape = "posOneZ";
+      }
     }
     // spacebar to start timer
     else if (event.keyCode === 32) {
