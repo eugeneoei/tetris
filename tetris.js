@@ -274,7 +274,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function checkRightWall() {
     var isRight = false;
-    console.log(shape, "MY SHAPE");
     for (var i = 0; i < shape.length; i++) {
       if(shape[i].col === (width - 1)) {
         isRight = true;
@@ -327,14 +326,14 @@ document.addEventListener('DOMContentLoaded', function () {
   function direction(event) {
     // right arrow
     if (event.keyCode === 39) {
-      if(checkRightWall()) { // THIS WAS SHIFTED INTO THE FOR LOOP
-        for (var i = 0; i < shape.length; i++) {
-          shape[i].col = shape[i].col;
-        }
+      if(checkRightWall()) {
+        // do nothing ie if at right wall, do not increase
+        // col values
       }
       // checks if block's right is occupied
       else if (checkRightCollision()) {
-          shape[i].col = shape[i].col;
+          // do nothing ie if right of shape is occupied,
+          // do not increase col values
   	 	}
       // otherwise move block one col right
   	 	else {
@@ -349,56 +348,45 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // left arrow
     else if (event.keyCode === 37) {
-    	var isLeft = false;
-    	for (var i = 0; i < shape.length; i++) {
-    		if (shape[i].col === 0) {
-    			isLeft = true;
-    		}
-    		// checks for col on block's left
-    		else if (checkLeftCollision()) {
-          shape[i].col = shape[i].col;
-    		}
-    		else {
-          clearCanvas();
-          for (var i = 0; i < shape.length; i++) {
-            gameGrid[shape[i].row][shape[i].col] = 0;
-            shape[i].col--;
-          }
-          drawShape();
-    		}
+      if(checkLeftWall()) {
+        // do nothing ie if at left wall, do not decrease
+        // col values
     	}
-    	if(isLeft) {
-    		for (var i = 0; i < shape.length; i++) {
-    			shape[i].col = shape[i].col;
-    		}
-    	}
+  		// checks for col on block's left
+  		else if (checkLeftCollision()) {
+        // do nothing ie if left of shape is occupied,
+        // do not decrease col values
+  		}
+  		else {
+        clearCanvas();
+        for (var i = 0; i < shape.length; i++) {
+          gameGrid[shape[i].row][shape[i].col] = 0;
+          shape[i].col--;
+        }
+        drawShape();
+  		}
     }
     // down arrow
     else if (event.keyCode === 40) {
-    	var isDown = false;
-    	for (var i = 0; i < shape.length; i++) {
-    			if (shape[i].row === (height - 1)) {
-    				isDown = true;
-    		}
-    		// checks for block below if block not at row 39
-        else if (checkBottomCollision()) {
-          gameGrid[shape[i].row] = gameGrid[shape[i].row];
-    		}
-    		else {
-          clearCanvas();
-          for (var i = 0; i < shape.length; i++) {
-            gameGrid[shape[i].row][shape[i].col] = 0;
-            shape[i].row++;
-          }
-    			drawShape();
-    		}
+    	if (checkBaseline()) {
+    	  // do nothing ie if at baseline, do not increase
+        // row values
     	}
-    	if(isDown) {
-    		for (var i = 0; i < shape.length; i++) {
-    			shape[i].col = shape[i].col;
-    		}
-    	}
-    }
+  		// checks for block below if block not at row 39
+      else if (checkBottomCollision()) {
+        // do nothing ie if bottom of shape is occupied,
+        // do not increase row values
+  		}
+  		else {
+        clearCanvas();
+        for (var i = 0; i < shape.length; i++) {
+          gameGrid[shape[i].row][shape[i].col] = 0;
+          shape[i].row++;
+        }
+  			drawShape();
+  		}
+  	}
+
     // up arrow
     else if (event.keyCode === 38) {
       // cubeThree is the pivot for shape I
@@ -649,7 +637,7 @@ document.addEventListener('DOMContentLoaded', function () {
     else if (event.keyCode === 32) {
       initiateTimer();
     }
-  }
+  } // closing bracket for keydown
 
   // to identify which array row needs to be cleared
   function clearAndDrop() {
