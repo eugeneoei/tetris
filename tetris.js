@@ -337,12 +337,12 @@ document.addEventListener('DOMContentLoaded', function () {
   	 	}
       // otherwise move block one col right
   	 	else {
-          clearCanvas();
-          for (var i = 0; i < shape.length; i++) {
-            gameGrid[shape[i].row][shape[i].col] = 0;
-            shape[i].col++;
-          }
-          drawShape();
+        clearCanvas();
+        for (var i = 0; i < shape.length; i++) {
+          gameGrid[shape[i].row][shape[i].col] = 0;
+          shape[i].col++;
+        }
+        drawShape();
   		}
     }
 
@@ -388,11 +388,11 @@ document.addEventListener('DOMContentLoaded', function () {
   	}
 
     // up arrow
+    // have not added rotation restriction ie when at wall,
+    // pivot's position has to move
     else if (event.keyCode === 38) {
       // cubeThree is the pivot for shape I
       // pivot's position does not change
-      // have not added rotation restriction ie when at wall,
-      // pivot's position has to move
       if (currentShape === "posOneI") {
         rotate();
         cubeOne.row = cubeThree.row;
