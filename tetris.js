@@ -38,21 +38,21 @@ document.addEventListener('DOMContentLoaded', function () {
     if (num <= .1) {
       newO();
     }
-    // else if (num <= .28) {
-    //   newI();
-    // }
-    // else if (num <= .42) {
-    //   newL();
-    // }
-    // else if (num <= .56) {
-    //   newJ();
-    // }
-    // else if (num <= .7) {
-    //   newT();
-    // }
-    // else if (num <= .84) {
-    //   newS();
-    // }
+    else if (num <= .28) {
+      newI();
+    }
+    else if (num <= .42) {
+      newL();
+    }
+    else if (num <= .56) {
+      newJ();
+    }
+    else if (num <= .7) {
+      newT();
+    }
+    else if (num <= .84) {
+      newS();
+    }
     else if (num <= 1) {
       newZ();
     }
