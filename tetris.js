@@ -1,6 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
   // console.log('DOM loaded');
 
+  // things to work on:
+  // speed drop
+  // score
+  // next shape
+  // speed level
+
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
   var width = 20;
@@ -8,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var interval;
   var gameGrid = [];
   var currentShape;
+  var score = 0;
 
   // generate array to store values
   for (var i = 0; i < height; i++) {
@@ -30,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var shape = [cubeOne,cubeTwo,cubeThree,cubeFour];
 
   function initiateTimer() {
-    interval = setInterval(gameStart, 500);
+    interval = setInterval(gameStart, 250);
   }
 
   function newShape() {
@@ -169,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function () {
       setFinalLocation();
       newShape();
       drawShape();
-      interval = setInterval(gameStart, 500);
+      interval = setInterval(gameStart, 250);
     }
     else if (checkBottomCollision()) {
       clearInterval(interval);
@@ -178,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function () {
       drawShape();
       setFinalLocation();
       newShape();
-      interval = setInterval(gameStart, 500);
+      interval = setInterval(gameStart, 250);
     }
     else {
       // check position first then update grid
@@ -857,14 +864,18 @@ document.addEventListener('DOMContentLoaded', function () {
         // check if each value in the row is occupied
   			if(gameGrid[i][j] > 0) {
   				x++;
+
   			}
   		}
       // if whole row is filled, shift everything on top down by 1 row
       if(x === gameGrid[i].length) {
+        score += 10;
+        document.getElementById("number").textContent = score;
+
         // console.log("values in row " + i + " are all greater than 0");
         var k = i;
         do {
-          // copy row on top and delete tow on top
+          // copy row on top and delete row on top
           for (var j = 0; j < gameGrid[k].length; j++) {
             gameGrid[k][j] = gameGrid[k-1][j];
             gameGrid[k-1][j] = 0;
@@ -875,6 +886,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } while(rowEmpty(k-1) !== 0);
       }
   	}
+
   }
 
   function rowEmpty(rowNum) {

@@ -2,9 +2,319 @@ body {
   text-align: center;
 }
 
+#instructions {
+  margin-top: 20px;
+}
+
+#board {
+  position: relative;
+}
+
+#number {
+  display: inline-block;
+  position: absolute;
+  margin-top: 65px;
+  margin-left: 60px;
+}
+
+.score {
+  display: inline-block;
+  margin-left: 50px;
+  background-color: black;
+  position: absolute;
+  width: 5px;
+  height: 5px;
+}
+
+/*----------------------*/
+/* score letters */
+#scoreSone {
+  margin-top: 20px;
+  margin-left: 25px;
+}
+
+#scoreStwo {
+  margin-top: 20px;
+  margin-left: 17.5px;
+}
+
+#scoreSthree {
+  background-color: red;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+#scoreSfour {
+  background-color: red;
+  margin-top: 27.5px;
+  margin-left: 10px;
+}
+
+#scoreSfive {
+  background-color: red;
+  margin-top: 35px;
+  margin-left: 10px;
+}
+
+#scoreSsix {
+  margin-top: 35px;
+  margin-left: 17.5px;
+}
+
+#scoreSseven {
+  margin-top: 35px;
+  margin-left: 25px;
+}
+
+#scoreSeight {
+  margin-top: 42.5px;
+  margin-left: 25px;
+}
+
+#scoreSnine {
+  margin-top: 50px;
+  margin-left: 25px;
+}
+
+#scoreSten {
+  margin-top: 50px;
+  margin-left: 17.5px;
+}
+
+#scoreSeleven {
+  background-color: red;
+  margin-top: 50px;
+  margin-left: 10px;
+}
+
+/*----------------------*/
+
+#scoreCone {
+  margin-top: 20px;
+  margin-left: 50px;
+}
+
+#scoreCtwo {
+  margin-top: 20px;
+  margin-left: 42.5px;
+}
+
+#scoreCthree {
+  background-color: red;
+  margin-top: 20px;
+  margin-left: 35px;
+}
+
+#scoreCfour {
+  background-color: red;
+  margin-top: 27.5px;
+  margin-left: 35px;
+}
+
+#scoreCfive {
+  background-color: red;
+  margin-top: 35px;
+  margin-left: 35px;
+}
+
+#scoreCsix {
+  background-color: red;
+  margin-top: 42.5px;
+  margin-left: 35px;
+}
+
+#scoreCseven {
+  background-color: red;
+  margin-top: 50px;
+  margin-left: 35px;
+}
+
+#scoreCeight {
+  margin-top: 50px;
+  margin-left: 42.5px;
+}
+
+#scoreCnine {
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+/*----------------------*/
+
+#scoreOone {
+  margin-top: 20px;
+  margin-left: 75px;
+}
+
+#scoreOtwo {
+  margin-top: 20px;
+  margin-left: 67.5px;
+}
+
+#scoreOthree {
+  background-color: red;
+  margin-top: 20px;
+  margin-left: 60px;
+}
+
+#scoreOfour {
+  background-color: red;
+  margin-top: 27.5px;
+  margin-left: 60px;
+}
+
+#scoreOfive {
+  background-color: red;
+  margin-top: 35px;
+  margin-left: 60px;
+}
+
+#scoreOsix {
+  background-color: red;
+  margin-top: 42.5px;
+  margin-left: 60px;
+}
+
+#scoreOseven {
+  background-color: red;
+  margin-top: 50px;
+  margin-left: 60px;
+}
+
+#scoreOeight {
+  margin-top: 50px;
+  margin-left: 67.5px;
+}
+
+#scoreOnine {
+  margin-top: 50px;
+  margin-left: 75px;
+}
+
+#scoreOten {
+  margin-top: 42.5px;
+  margin-left: 75px;
+}
+
+#scoreOeleven {
+  margin-top: 35px;
+  margin-left: 75px;
+}
+
+#scoreOtwelve {
+  margin-top: 27.5px;
+  margin-left: 75px;
+}
+
+/*----------------------*/
+
+#scoreRone {
+  background-color: red;
+  margin-top: 20px;
+  margin-left: 85px;
+}
+
+#scoreRtwo {
+  background-color: red;
+  margin-top: 27.5px;
+  margin-left: 85px;
+}
+
+#scoreRthree {
+  background-color: red;
+  margin-top: 35px;
+  margin-left: 85px;
+}
+
+#scoreRfour {
+  background-color: red;
+  margin-top: 42.5px;
+  margin-left: 85px;
+}
+
+#scoreRfive {
+  background-color: red;
+  margin-top: 50px;
+  margin-left: 85px;
+}
+
+#scoreRsix {
+  margin-top: 23px;
+  margin-left: 92.5px;
+}
+
+#scoreRseven {
+  margin-top: 20px;
+  margin-left: 100px;
+}
+
+/*----------------------*/
+
+#scoreEone {
+  margin-top: 20px;
+  margin-left: 125px;
+}
+
+#scoreEtwo {
+  margin-top: 20px;
+  margin-left: 117.5px;
+}
+
+#scoreEthree {
+  background-color: red;
+  margin-top: 20px;
+  margin-left: 110px;
+}
+
+#scoreEfour {
+  background-color: red;
+  margin-top: 27.5px;
+  margin-left: 110px;
+}
+
+#scoreEfive {
+  background-color: red;
+  margin-top: 35px;
+  margin-left: 110px;
+}
+
+#scoreEsix {
+  background-color: red;
+  margin-top: 42.5px;
+  margin-left: 110px;
+}
+
+#scoreEseven {
+  background-color: red;
+  margin-top: 50px;
+  margin-left: 110px;
+}
+
+#scoreEeight {
+  margin-top: 50px;
+  margin-left: 117.5px;
+}
+
+#scoreEnine {
+  margin-top: 50px;
+  margin-left: 125px;
+}
+
+#scoreEten {
+  margin-top: 35px;
+  margin-left: 117.5px;
+}
+
+#scoreEeleven {
+  margin-top: 35px;
+  margin-left: 125px;
+}
+/*----------------------*/
+
 #canvas {
   border: 5px solid black;
-  margin-top: 25px;
+  margin-top: 20px;
+  margin-left: -160px;
   /*z-index: 1;*/
   background-color: white;
 }
@@ -28,6 +338,7 @@ body {
 }
 
 /*----------------------*/
+/* title blocks */
 
 #Tone {
   margin-left: -165px;
