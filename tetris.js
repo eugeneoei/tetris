@@ -35,24 +35,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function newShape() {
     var num = Math.random();
-    if (num <= .14) {
+    if (num <= .1) {
       newO();
     }
-    else if (num <= .28) {
-      newI();
-    }
-    else if (num <= .42) {
-      newL();
-    }
-    else if (num <= .56) {
-      newJ();
-    }
-    else if (num <= .7) {
-      newT();
-    }
-    else if (num <= .84) {
-      newS();
-    }
+    // else if (num <= .28) {
+    //   newI();
+    // }
+    // else if (num <= .42) {
+    //   newL();
+    // }
+    // else if (num <= .56) {
+    //   newJ();
+    // }
+    // else if (num <= .7) {
+    //   newT();
+    // }
+    // else if (num <= .84) {
+    //   newS();
+    // }
     else if (num <= 1) {
       newZ();
     }
@@ -156,12 +156,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function checkPosition() {
     // this part is still WIP
-    // if (gameStatus()) {
-    //   clearInterval(initiateTimer());
-      // console.log("game over");
-    // }
-    // else
-    if (checkBaseline()) {
+    // not fully functional yet
+    // blocks can still move
+    if (gameStatus()) {
+      clearInterval(interval);
+      console.log("game over");
+    }
+    else if (checkBaseline()) {
       clearInterval(interval);
       // console.log("time stop");
       clearAndDrop();
@@ -297,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function gameStatus() {
     var isStatus = false;
     for (var i = 0; i < width - 1; i++) {
-      if (gameGrid[4][i] !== 0) {
+      if (gameGrid[2][i] === 1) {
         isStatus = true;
         return isStatus;
       }
@@ -392,17 +393,51 @@ document.addEventListener('DOMContentLoaded', function () {
     // pivot's position has to move
     else if (event.keyCode === 38) {
       // cubeThree is the pivot for shape I
-      // pivot's position does not change
+      // pivot's position does not change unless pivot is at wall
       if (currentShape === "posOneI") {
         rotate();
-        cubeOne.row = cubeThree.row;
-        cubeOne.col = cubeThree.col + 2;
+        if(cubeThree.col === (width - 1)) {
+          // if pivot is at right wall, pivot needs to move
+          // two col left
+          cubeThree.row = cubeThree.row;
+          cubeThree.col = cubeThree.col - 2;
 
-        cubeTwo.row = cubeThree.row;
-        cubeTwo.col = cubeThree.col + 1;
+          cubeOne.row = cubeThree.row;
+          cubeOne.col = cubeThree.col + 2;
 
-        cubeFour.row = cubeThree.row;
-        cubeFour.col = cubeThree.col - 1;
+          cubeTwo.row = cubeThree.row;
+          cubeTwo.col = cubeThree.col + 1;
+
+          cubeFour.row = cubeThree.row;
+          cubeFour.col = cubeThree.col - 1;
+
+        }
+        else if (cubeThree.col === 0) {
+          // if pivot is at left wall, pivot needs to move
+          // one col right
+          cubeThree.row = cubeThree.row;
+          cubeThree.col = cubeThree.col + 1;
+
+          cubeOne.row = cubeThree.row;
+          cubeOne.col = cubeThree.col + 2;
+
+          cubeTwo.row = cubeThree.row;
+          cubeTwo.col = cubeThree.col + 1;
+
+          cubeFour.row = cubeThree.row;
+          cubeFour.col = cubeThree.col - 1;
+        }
+        else {
+          cubeOne.row = cubeThree.row;
+          cubeOne.col = cubeThree.col + 2;
+
+          cubeTwo.row = cubeThree.row;
+          cubeTwo.col = cubeThree.col + 1;
+
+          cubeFour.row = cubeThree.row;
+          cubeFour.col = cubeThree.col - 1;
+        }
+
         drawShape();
         currentShape = "posTwoI";
       }
@@ -435,14 +470,32 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       else if (currentShape === "posTwoT") {
         rotate();
-        cubeOne.row = cubeTwo.row;
-        cubeOne.col = cubeTwo.col + 1;
+        if (cubeTwo.col === (width - 1)) {
+          // if pivot is at right wall, pivot needs to move
+          // one col left
+          cubeTwo.row = cubeTwo.row;
+          cubeTwo.col = cubeTwo.col - 1;
 
-        cubeThree.row = cubeTwo.row;
-        cubeThree.col = cubeTwo.col - 1;
+          cubeOne.row = cubeTwo.row;
+          cubeOne.col = cubeTwo.col + 1;
 
-        cubeFour.row = cubeTwo.row - 1;
-        cubeFour.col = cubeTwo.col;
+          cubeThree.row = cubeTwo.row;
+          cubeThree.col = cubeTwo.col - 1;
+
+          cubeFour.row = cubeTwo.row - 1;
+          cubeFour.col = cubeTwo.col;
+        }
+        else {
+          cubeOne.row = cubeTwo.row;
+          cubeOne.col = cubeTwo.col + 1;
+
+          cubeThree.row = cubeTwo.row;
+          cubeThree.col = cubeTwo.col - 1;
+
+          cubeFour.row = cubeTwo.row - 1;
+          cubeFour.col = cubeTwo.col;
+        }
+
         drawShape();
         currentShape = "posThreeT";
       }
@@ -461,81 +514,185 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       else if (currentShape === "posFourT") {
         rotate();
-        cubeOne.row = cubeTwo.row;
-        cubeOne.col = cubeTwo.col - 1;
+        if (cubeTwo.col === 0) {
+          // if pivot is at left wall, pivot needs to move
+          // one col right
+          cubeTwo.row = cubeTwo.row;
+          cubeTwo.col = cubeTwo.col + 1;
 
-        cubeThree.row = cubeTwo.row;
-        cubeThree.col = cubeTwo.col + 1;
+          cubeOne.row = cubeTwo.row;
+          cubeOne.col = cubeTwo.col - 1;
 
-        cubeFour.row = cubeTwo.row + 1;
-        cubeFour.col = cubeTwo.col;
+          cubeThree.row = cubeTwo.row;
+          cubeThree.col = cubeTwo.col + 1;
+
+          cubeFour.row = cubeTwo.row + 1;
+          cubeFour.col = cubeTwo.col;
+        }
+        else {
+          cubeOne.row = cubeTwo.row;
+          cubeOne.col = cubeTwo.col - 1;
+
+          cubeThree.row = cubeTwo.row;
+          cubeThree.col = cubeTwo.col + 1;
+
+          cubeFour.row = cubeTwo.row + 1;
+          cubeFour.col = cubeTwo.col;
+        }
         drawShape();
         currentShape = "posOneT";
       }
       // cubeThree is pivot for shape L
       else if (currentShape === "posOneL") {
         rotate();
-        cubeOne.row = cubeThree.row;
-        cubeOne.col = cubeThree.col + 2;
+        if (cubeThree.col === (width - 2)) {
+          // if pivot is at width - 2, pivot needs to move
+          // one col left to consider position of cubeOne and cubeTwo
+          cubeThree.row = cubeThree.row;
+          cubeThree.col = cubeThree.col - 1;
 
-        cubeTwo.row = cubeThree.row;
-        cubeTwo.col = cubeThree.col + 1;
+          cubeOne.row = cubeThree.row;
+          cubeOne.col = cubeThree.col + 2;
 
-        cubeFour.row = cubeThree.row + 1;
-        cubeFour.col = cubeThree.col;
+          cubeTwo.row = cubeThree.row;
+          cubeTwo.col = cubeThree.col + 1;
+
+          cubeFour.row = cubeThree.row + 1;
+          cubeFour.col = cubeThree.col;
+        }
+        else {
+          cubeOne.row = cubeThree.row;
+          cubeOne.col = cubeThree.col + 2;
+
+          cubeTwo.row = cubeThree.row;
+          cubeTwo.col = cubeThree.col + 1;
+
+          cubeFour.row = cubeThree.row + 1;
+          cubeFour.col = cubeThree.col;
+        }
+
         drawShape();
         currentShape = "posTwoL";
       }
       else if (currentShape === "posTwoL") {
         rotate();
-        cubeOne.row = cubeThree.row + 2;
-        cubeOne.col = cubeThree.col;
+        if (cubeThree.col === 0) {
+          // if pivot is at left wall, pivot needs to move
+          // one col right to accomodate cubeFour
+          cubeThree.row = cubeThree.row;
+          cubeThree.col = cubeThree.col + 1;
 
-        cubeTwo.row = cubeThree.row + 1;
-        cubeTwo.col = cubeThree.col;
+          cubeOne.row = cubeThree.row + 2;
+          cubeOne.col = cubeThree.col;
 
-        cubeFour.row = cubeThree.row;
-        cubeFour.col = cubeThree.col - 1;
+          cubeTwo.row = cubeThree.row + 1;
+          cubeTwo.col = cubeThree.col;
+
+          cubeFour.row = cubeThree.row;
+          cubeFour.col = cubeThree.col - 1;
+        }
+        else {
+          cubeOne.row = cubeThree.row + 2;
+          cubeOne.col = cubeThree.col;
+
+          cubeTwo.row = cubeThree.row + 1;
+          cubeTwo.col = cubeThree.col;
+
+          cubeFour.row = cubeThree.row;
+          cubeFour.col = cubeThree.col - 1;
+        }
         drawShape();
         currentShape = "posThreeL";
       }
       else if (currentShape === "posThreeL") {
         rotate();
-        cubeOne.row = cubeThree.row;
-        cubeOne.col = cubeThree.col - 2;
+        if (cubeThree.col === 1 ) {
+          // if pivot is at col 1, pivot needs to move
+          // one col right to accomodate cubeOne
+          cubeThree.row = cubeThree.row;
+          cubeThree.col = cubeThree.col + 1;
 
-        cubeTwo.row = cubeThree.row;
-        cubeTwo.col = cubeThree.col - 1;
+          cubeOne.row = cubeThree.row;
+          cubeOne.col = cubeThree.col - 2;
 
-        cubeFour.row = cubeThree.row - 1;
-        cubeFour.col = cubeThree.col;
+          cubeTwo.row = cubeThree.row;
+          cubeTwo.col = cubeThree.col - 1;
+
+          cubeFour.row = cubeThree.row - 1;
+          cubeFour.col = cubeThree.col;
+        }
+        else {
+          cubeOne.row = cubeThree.row;
+          cubeOne.col = cubeThree.col - 2;
+
+          cubeTwo.row = cubeThree.row;
+          cubeTwo.col = cubeThree.col - 1;
+
+          cubeFour.row = cubeThree.row - 1;
+          cubeFour.col = cubeThree.col;
+        }
         drawShape();
         currentShape = "posFourL";
       }
       else if (currentShape === "posFourL") {
         rotate();
-        cubeOne.row = cubeThree.row - 2;
-        cubeOne.col = cubeThree.col;
+        if (cubeThree.col === (width - 1)) {
+          // if pivot is at right wall, pivot needs to move
+          // one col left to accomodate cubeFour
+          cubeThree.row = cubeThree.row;
+          cubeThree.col = cubeThree.col - 1;
 
-        cubeTwo.row = cubeThree.row - 1;
-        cubeTwo.col = cubeThree.col;
+          cubeOne.row = cubeThree.row - 2;
+          cubeOne.col = cubeThree.col;
 
-        cubeFour.row = cubeThree.row;
-        cubeFour.col = cubeThree.col  + 1;
+          cubeTwo.row = cubeThree.row - 1;
+          cubeTwo.col = cubeThree.col;
+
+          cubeFour.row = cubeThree.row;
+          cubeFour.col = cubeThree.col  + 1;
+        }
+        else {
+          cubeOne.row = cubeThree.row - 2;
+          cubeOne.col = cubeThree.col;
+
+          cubeTwo.row = cubeThree.row - 1;
+          cubeTwo.col = cubeThree.col;
+
+          cubeFour.row = cubeThree.row;
+          cubeFour.col = cubeThree.col  + 1;
+        }
         drawShape();
         currentShape = "posOneL";
       }
       // cubeThree is pivot for shape J
       else if (currentShape === "posOneJ") {
         rotate();
-        cubeOne.row = cubeThree.row;
-        cubeOne.col = cubeThree.col + 2;
+        if (cubeThree.col === (width - 1)) {
+          // if pivot is at right wall, pivot needs to move
+          // two col left to accomodate cubeOne and cubeTwo
+          cubeThree.row = cubeThree.row;
+          cubeThree.col = cubeThree.col - 2;
 
-        cubeTwo.row = cubeThree.row;
-        cubeTwo.col = cubeThree.col + 1;
+          cubeOne.row = cubeThree.row;
+          cubeOne.col = cubeThree.col + 2;
 
-        cubeFour.row = cubeThree.row - 1;
-        cubeFour.col = cubeThree.col;
+          cubeTwo.row = cubeThree.row;
+          cubeTwo.col = cubeThree.col + 1;
+
+          cubeFour.row = cubeThree.row - 1;
+          cubeFour.col = cubeThree.col;
+        }
+        else {
+          cubeOne.row = cubeThree.row;
+          cubeOne.col = cubeThree.col + 2;
+
+          cubeTwo.row = cubeThree.row;
+          cubeTwo.col = cubeThree.col + 1;
+
+          cubeFour.row = cubeThree.row - 1;
+          cubeFour.col = cubeThree.col;
+        }
+
         drawShape();
         currentShape = "posTwoJ";
       }
@@ -554,14 +711,31 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       else if (currentShape === "posThreeJ") {
         rotate();
-        cubeOne.row = cubeThree.row;
-        cubeOne.col = cubeThree.col - 2;
+        if (cubeThree.col === 0) {
+          // if pivot is at left wall, pivot needs to move
+          // two col right to accomodate cubeOne and cubeTwo
+          cubeThree.row = cubeThree.row;
+          cubeThree.col = cubeThree.col + 2;
 
-        cubeTwo.row = cubeThree.row;
-        cubeTwo.col = cubeThree.col - 1;
+          cubeOne.row = cubeThree.row;
+          cubeOne.col = cubeThree.col - 2;
 
-        cubeFour.row = cubeThree.row + 1;
-        cubeFour.col = cubeThree.col;
+          cubeTwo.row = cubeThree.row;
+          cubeTwo.col = cubeThree.col - 1;
+
+          cubeFour.row = cubeThree.row + 1;
+          cubeFour.col = cubeThree.col;
+        }
+        else {
+          cubeOne.row = cubeThree.row;
+          cubeOne.col = cubeThree.col - 2;
+
+          cubeTwo.row = cubeThree.row;
+          cubeTwo.col = cubeThree.col - 1;
+
+          cubeFour.row = cubeThree.row + 1;
+          cubeFour.col = cubeThree.col;
+        }
         drawShape();
         currentShape = "posFourJ";
       }
@@ -594,14 +768,31 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       else if (currentShape === "posTwoS") {
         rotate();
-        cubeOne.row = cubeThree.row - 1;
-        cubeOne.col = cubeThree.col;
+        if (cubeThree.col === 0) {
+          // if pivot is at left wall, pivot needs to move
+          // one col right to accomodate cubeTwo
+          cubeThree.row = cubeThree.row;
+          cubeThree.col = cubeThree.col + 1;
 
-        cubeTwo.row = cubeThree.row - 1;
-        cubeTwo.col = cubeThree.col + 1;
+          cubeOne.row = cubeThree.row - 1;
+          cubeOne.col = cubeThree.col;
 
-        cubeFour.row = cubeThree.row;
-        cubeFour.col = cubeThree.col - 1;
+          cubeTwo.row = cubeThree.row - 1;
+          cubeTwo.col = cubeThree.col + 1;
+
+          cubeFour.row = cubeThree.row;
+          cubeFour.col = cubeThree.col - 1;
+        }
+        else {
+          cubeOne.row = cubeThree.row - 1;
+          cubeOne.col = cubeThree.col;
+
+          cubeTwo.row = cubeThree.row - 1;
+          cubeTwo.col = cubeThree.col + 1;
+
+          cubeFour.row = cubeThree.row;
+          cubeFour.col = cubeThree.col - 1;
+        }
         drawShape();
         currentShape = "posOneS";
       }
@@ -621,14 +812,31 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       else if (currentShape === "posTwoZ") {
         rotate();
-        cubeOne.row = cubeThree.row - 1;
-        cubeOne.col = cubeThree.col - 1;
+        if (cubeThree.col === 0) {
+          // if pivot is at left wall, pivot needs to move
+          // one col right to acoomodate cubeOne
+          cubeThree.row = cubeThree.row;
+          cubeThree.col = cubeThree.col + 1;
 
-        cubeTwo.row = cubeThree.row - 1;
-        cubeTwo.col = cubeThree.col;
+          cubeOne.row = cubeThree.row - 1;
+          cubeOne.col = cubeThree.col - 1;
 
-        cubeFour.row = cubeThree.row;
-        cubeFour.col = cubeThree.col + 1;
+          cubeTwo.row = cubeThree.row - 1;
+          cubeTwo.col = cubeThree.col;
+
+          cubeFour.row = cubeThree.row;
+          cubeFour.col = cubeThree.col + 1;
+        }
+        else {
+          cubeOne.row = cubeThree.row - 1;
+          cubeOne.col = cubeThree.col - 1;
+
+          cubeTwo.row = cubeThree.row - 1;
+          cubeTwo.col = cubeThree.col;
+
+          cubeFour.row = cubeThree.row;
+          cubeFour.col = cubeThree.col + 1;
+        }
         drawShape();
         currentShape = "posOneZ";
       }
