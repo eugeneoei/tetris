@@ -3,8 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // things to work on:
   // speed drop
-  // score
-  // next shape
+  // next shape information
   // speed level
 
   var canvas = document.getElementById('canvas');
@@ -37,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var shape = [cubeOne,cubeTwo,cubeThree,cubeFour];
 
   function initiateTimer() {
-    interval = setInterval(gameStart, 250);
+    interval = setInterval(gameStart, 50);
   }
 
   function newShape() {
@@ -176,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
       setFinalLocation();
       newShape();
       drawShape();
-      interval = setInterval(gameStart, 250);
+      interval = setInterval(gameStart, 50);
     }
     else if (checkBottomCollision()) {
       clearInterval(interval);
@@ -185,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function () {
       drawShape();
       setFinalLocation();
       newShape();
-      interval = setInterval(gameStart, 250);
+      interval = setInterval(gameStart, 50);
     }
     else {
       // check position first then update grid
